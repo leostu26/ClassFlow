@@ -1,0 +1,68 @@
+# ClassFlow
+
+**ClassFlow** is an Android mobile app that helps students manage classes, assignments, deadlines, and academic progress in one place.
+
+## Purpose
+The purpose of ClassFlow is to make it easier for students to organize coursework and keep track of academic responsibilities throughout the term. Instead of relying on scattered notes, PDFs, and class portals, users can manage everything in a single app.
+
+## Problem
+Students often miss deadlines or lose track of assignments because course information is spread across multiple systems. ClassFlow addresses this by giving users a structured way to manage classes, tasks, and deadlines from one mobile platform.
+
+## Platform and Tools
+- **Platform:** Android
+- **IDE:** Android Studio
+- **Language:** Kotlin
+- **Storage:** SQLite or Room Database
+
+## Main Features
+- Add classes
+- Add assignments and tasks
+- Set due dates
+- Track task status
+- View assignments by class
+- Monitor progress on a dashboard
+
+## Planned Advanced Features
+- Gantt chart view
+- Simplified RACI matrix
+- Weekly workload tracker
+- Syllabus-to-task setup
+
+## Current Build Focus
+The current development stage is focused on building the app framework and organizing the project structure.
+
+### Current development tasks
+- Create the Android Studio project
+- Build the Home screen
+- Build the Class List screen
+- Build the Add Class screen
+- Build the Task screen
+- Add basic navigation
+- Push progress to GitHub Classroom
+- Update README and Wiki documentation
+
+## Screen Plan
+### 1. Home Screen
+Shows the app title and summary of classes and assignments.
+
+### 2. Class List Screen
+Shows the user’s courses.
+
+### 3. Add Class Screen
+Allows the user to add a new course.
+
+### 4. Task Screen
+Shows assignments and tasks for the selected class.
+
+## Design Goal
+The design of ClassFlow will focus on clear navigation, simple academic organization, and practical student use.
+
+## GitHub Requirements
+This project is being tracked in GitHub Classroom. Current deliverables include:
+- README file
+- GitHub README link
+- Project outline in GitHub Wiki
+- Early code progress in the repository
+
+## Project Status
+**Status:** Framework Build / Early Development
