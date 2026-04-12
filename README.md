@@ -10,6 +10,19 @@ ClassFlow makes it easier for students to organize coursework and keep track of 
 ## Problem
 Students often miss deadlines or lose track of assignments because course information is spread across multiple systems. ClassFlow addresses this by giving users a structured way to manage classes, tasks, and deadlines from one mobile platform.
 
+## Screenshots
+| Splash | Home (Empty) | Home |
+|--------|-------------|------|
+| ![Splash](screenshots/splash.png) | ![Home Empty](screenshots/blankhome.png) | ![Home](screenshots/home.png) |
+
+| Classes | Tasks | Add Class |
+|---------|-------|-----------|
+| ![Classes](screenshots/classes.png) | ![Tasks](screenshots/tasks.png) | ![Add Class](screenshots/add_class.png) |
+
+| Add Task | Task Detail |
+|----------|-------------|
+| ![Add Task](screenshots/add_task.png) | ![Task Detail](screenshots/task_detail.png) |
+
 ## Platform and Tools
 - **Platform:** Android
 - **IDE:** Android Studio
