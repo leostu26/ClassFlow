@@ -11,17 +11,21 @@ ClassFlow makes it easier for students to organize coursework and keep track of 
 Students often miss deadlines or lose track of assignments because course information is spread across multiple systems. ClassFlow addresses this by giving users a structured way to manage classes, tasks, and deadlines from one mobile platform.
 
 ## Screenshots
+<div align="center">
+
 | Splash | Home (Empty) | Home |
-|--------|-------------|------|
-| ![Splash](screenshots/splash.png) | ![Home Empty](screenshots/blankhome.png) | ![Home](screenshots/home.png) |
+|:------:|:------------:|:----:|
+| <img src="screenshots/splash.png" width="160"/> | <img src="screenshots/blankhome.png" width="160"/> | <img src="screenshots/home.png" width="160"/> |
 
-| Classes | Tasks | Add Class |
-|---------|-------|-----------|
-| ![Classes](screenshots/classes.png) | ![Tasks](screenshots/tasks.png) | ![Add Class](screenshots/add_class.png) |
+| Classes | Tasks | Task Detail |
+|:-------:|:-----:|:-----------:|
+| <img src="screenshots/classes.png" width="160"/> | <img src="screenshots/tasks.png" width="160"/> | <img src="screenshots/task_detail.png" width="160"/> |
 
-| Add Task | Task Detail |
-|----------|-------------|
-| ![Add Task](screenshots/add_task.png) | ![Task Detail](screenshots/task_detail.png) |
+| Add Class |
+|:---------:|
+| <img src="screenshots/add_class.png" width="160"/> |
+
+</div>
 
 ## Platform and Tools
 - **Platform:** Android
