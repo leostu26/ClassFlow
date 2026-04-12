@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Brand Colors -->
+    <color name="primary">#3D5AFE</color>
+    <color name="primary_dark">#0031CA</color>
+    <color name="primary_light">#8187FF</color>
+    <color name="accent">#FF6D00</color>
+
+    <!-- UI Colors -->
+    <color name="background">#F4F6FB</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+
+    <!-- Priority Colors -->
+    <color name="priority_high">#EF4444</color>
+    <color name="priority_medium">#F59E0B</color>
+    <color name="priority_low">#10B981</color>
+
+    <!-- Status Colors -->
+    <color name="overdue">#DC2626</color>
+    <color name="due_soon">#D97706</color>
+    <color name="completed">#6B7280</color>
+
+    <!-- Bottom Nav -->
+    <color name="bottom_nav_selected">#3D5AFE</color>
+    <color name="bottom_nav_unselected">#9CA3AF</color>
+    <!-- Splash -->
+    <color name="splash_bg">#3D2DB0</color>
+</resources>

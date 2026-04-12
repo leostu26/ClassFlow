@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="accent">#FF6D00</color>
+    <color name="background">#F4F6FB</color>
+    <color name="bottom_nav_selected">#3D5AFE</color>
+    <color name="bottom_nav_unselected">#9CA3AF</color>
+    <color name="completed">#6B7280</color>
+    <color name="due_soon">#D97706</color>
+    <color name="overdue">#DC2626</color>
+    <color name="primary">#3D5AFE</color>
+    <color name="primary_dark">#0031CA</color>
+    <color name="primary_light">#8187FF</color>
+    <color name="priority_high">#EF4444</color>
+    <color name="priority_low">#10B981</color>
+    <color name="priority_medium">#F59E0B</color>
+    <color name="splash_bg">#3D2DB0</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="text_primary">#1A1A2E</color>
+    <color name="text_secondary">#6B7280</color>
+    <string name="add_class">Add Class</string>
+    <string name="add_task">Add Task</string>
+    <string name="app_name">ClassFlow</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="nav_classes">Classes</string>
+    <string name="nav_home">Home</string>
+    <string name="no_classes">No classes yet. Tap + to add your first class!</string>
+    <string name="no_tasks">No tasks yet. Tap + to add an assignment!</string>
+    <string name="save">Save</string>
+    <style name="ClassFlow.ActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">@color/primary</item>
+        <item name="titleTextStyle">@style/ClassFlow.ActionBar.Title</item>
+    </style>
+    <style name="ClassFlow.ActionBar.Title" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <style name="Theme.ClassFlow" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary_dark</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorSecondary">@color/accent</item>
+        <item name="colorOnSecondary">@android:color/white</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="android:statusBarColor">@color/primary_dark</item>
+        <item name="android:navigationBarColor">@color/surface</item>
+        <item name="actionBarStyle">@style/ClassFlow.ActionBar</item>
+    </style>
+    <style name="Theme.ClassFlow.Splash" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="android:windowBackground">@color/splash_bg</item>
+        <item name="android:statusBarColor">@color/splash_bg</item>
+        <item name="android:navigationBarColor">@color/splash_bg</item>
+    </style>
+</resources>
