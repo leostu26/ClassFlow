@@ -68,11 +68,13 @@
 
             <Button
                 android:id="@+id/btn_pick_date"
-                style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Change Date"
-                android:textColor="@color/primary" />
+                android:textSize="15sp"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:backgroundTint="@color/primary" />
 
             <TextView
                 android:id="@+id/tv_selected_date"
@@ -152,11 +154,13 @@
 
         <Button
             android:id="@+id/btn_delete"
-            style="@style/Widget.Material3.Button.OutlinedButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete Task"
-            android:textColor="@color/overdue" />
+            android:textSize="15sp"
+            android:textAllCaps="false"
+            android:textColor="@color/cancel_text"
+            android:backgroundTint="@color/cancel_bg" />
 
     </LinearLayout>
 </ScrollView>

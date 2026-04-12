@@ -16,7 +16,15 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
     val courseCount: LiveData<Int>
     val pendingTaskCount: LiveData<Int>
-    val tasksDueSoon: LiveData<List<TaskWithCourseName>>
+
+    // Due today: today 00:00 → today 23:59
+    val tasksDueToday: LiveData<List<TaskWithCourseName>>
+
+    // Due this week: tomorrow 00:00 → 7 days from now
+    val tasksDueThisWeek: LiveData<List<TaskWithCourseName>>
+
+    // Future: beyond 7 days from now
+    val tasksFuture: LiveData<List<TaskWithCourseName>>
 
     init {
         val db = ClassFlowDatabase.getDatabase(application)
@@ -25,8 +33,16 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
         courseCount = courseRepository.courseCount
         pendingTaskCount = taskRepository.totalPendingCount
-        tasksDueSoon = taskRepository.getTasksWithCourseNameDueSoon(
+
+        tasksDueToday = taskRepository.getTasksWithCourseNameDueSoon(
             DateUtils.todayStart(),
+            DateUtils.todayEnd()
+        )
+        tasksDueThisWeek = taskRepository.getTasksWithCourseNameDueSoon(
+            DateUtils.tomorrowStart(),
+            DateUtils.daysFromNow(7)
+        )
+        tasksFuture = taskRepository.getTasksWithCourseNameFuture(
             DateUtils.daysFromNow(7)
         )
     }

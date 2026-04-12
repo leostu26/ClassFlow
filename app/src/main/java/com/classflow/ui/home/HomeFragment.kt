@@ -18,7 +18,10 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private val viewModel: HomeViewModel by viewModels()
-    private lateinit var taskAdapter: HomeTaskAdapter
+
+    private lateinit var todayAdapter: HomeTaskAdapter
+    private lateinit var weekAdapter: HomeTaskAdapter
+    private lateinit var futureAdapter: HomeTaskAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupGreeting()
-        setupRecyclerView()
+        setupRecyclerViews()
         observeViewModel()
 
         binding.btnViewClasses.setOnClickListener {
@@ -47,26 +50,40 @@ class HomeFragment : Fragment() {
     private fun setupGreeting() {
         val hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
         val greeting = when {
-            hour < 12 -> "Good morning"
-            hour < 17 -> "Good afternoon"
-            else -> "Good evening"
+            hour < 12 -> "Good Morning"
+            hour < 17 -> "Good Afternoon"
+            else      -> "Good Evening"
         }
         binding.tvGreeting.text = greeting
         binding.tvDate.text = SimpleDateFormat("EEEE, MMMM d", Locale.getDefault())
             .format(Date())
     }
 
-    private fun setupRecyclerView() {
-        taskAdapter = HomeTaskAdapter { taskWithCourse ->
-            val action = HomeFragmentDirections
-                .actionHomeFragmentToTaskDetailFragment(
-                    taskId = taskWithCourse.taskId,
-                    courseName = taskWithCourse.courseName
-                )
-            findNavController().navigate(action)
+    private fun navigateToDetail(item: com.classflow.data.model.TaskWithCourseName) {
+        val action = HomeFragmentDirections
+            .actionHomeFragmentToTaskDetailFragment(
+                taskId = item.taskId,
+                courseName = item.courseName
+            )
+        findNavController().navigate(action)
+    }
+
+    private fun setupRecyclerViews() {
+        todayAdapter = HomeTaskAdapter(highlightDateRed = true) { navigateToDetail(it) }
+        binding.rvDueToday.apply {
+            adapter = todayAdapter
+            layoutManager = LinearLayoutManager(requireContext())
         }
+
+        weekAdapter = HomeTaskAdapter { navigateToDetail(it) }
         binding.rvUpcomingTasks.apply {
-            adapter = taskAdapter
+            adapter = weekAdapter
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+
+        futureAdapter = HomeTaskAdapter { navigateToDetail(it) }
+        binding.rvFutureTasks.apply {
+            adapter = futureAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
     }
@@ -80,10 +97,37 @@ class HomeFragment : Fragment() {
             binding.tvPendingCount.text = "$count Pending"
         }
 
-        viewModel.tasksDueSoon.observe(viewLifecycleOwner) { tasks ->
-            taskAdapter.submitList(tasks)
-            binding.tvNoUpcoming.visibility = if (tasks.isEmpty()) View.VISIBLE else View.GONE
-            binding.rvUpcomingTasks.visibility = if (tasks.isEmpty()) View.GONE else View.VISIBLE
+        viewModel.tasksDueToday.observe(viewLifecycleOwner) { tasks ->
+            todayAdapter.submitList(tasks)
+            if (tasks.isEmpty()) {
+                binding.tvNoToday.visibility = View.VISIBLE
+                binding.rvDueToday.visibility = View.GONE
+            } else {
+                binding.tvNoToday.visibility = View.GONE
+                binding.rvDueToday.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.tasksDueThisWeek.observe(viewLifecycleOwner) { tasks ->
+            weekAdapter.submitList(tasks)
+            if (tasks.isEmpty()) {
+                binding.tvNoWeek.visibility = View.VISIBLE
+                binding.rvUpcomingTasks.visibility = View.GONE
+            } else {
+                binding.tvNoWeek.visibility = View.GONE
+                binding.rvUpcomingTasks.visibility = View.VISIBLE
+            }
+        }
+
+        viewModel.tasksFuture.observe(viewLifecycleOwner) { tasks ->
+            futureAdapter.submitList(tasks)
+            if (tasks.isEmpty()) {
+                binding.tvNoFuture.visibility = View.VISIBLE
+                binding.rvFutureTasks.visibility = View.GONE
+            } else {
+                binding.tvNoFuture.visibility = View.GONE
+                binding.rvFutureTasks.visibility = View.VISIBLE
+            }
         }
     }
 
@@ -92,4 +136,3 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 }
-

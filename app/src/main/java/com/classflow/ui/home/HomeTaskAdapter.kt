@@ -14,6 +14,7 @@ import com.classflow.databinding.ItemTaskHomeBinding
 import com.classflow.util.DateUtils
 
 class HomeTaskAdapter(
+    private val highlightDateRed: Boolean = false,
     private val onItemClick: (TaskWithCourseName) -> Unit
 ) : ListAdapter<TaskWithCourseName, HomeTaskAdapter.ViewHolder>(DiffCallback) {
 
@@ -47,7 +48,7 @@ class HomeTaskAdapter(
                 ContextCompat.getColor(binding.root.context, priorityColor)
             )
 
-            if (!item.isCompleted && DateUtils.isOverdue(item.dueDate)) {
+            if (highlightDateRed || (!item.isCompleted && DateUtils.isOverdue(item.dueDate))) {
                 binding.tvDueDate.setTextColor(
                     ContextCompat.getColor(binding.root.context, R.color.overdue)
                 )

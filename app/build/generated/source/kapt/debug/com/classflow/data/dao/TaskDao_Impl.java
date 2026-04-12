@@ -510,6 +510,88 @@ public final class TaskDao_Impl implements TaskDao {
   }
 
   @Override
+  public LiveData<List<TaskWithCourseName>> getTasksWithCourseNameFuture(final long afterDate) {
+    final String _sql = "\n"
+            + "        SELECT t.id as taskId, t.courseId, t.title, t.description, t.dueDate, \n"
+            + "               t.isCompleted, t.priority, t.type, c.name as courseName\n"
+            + "        FROM tasks t\n"
+            + "        INNER JOIN courses c ON t.courseId = c.id\n"
+            + "        WHERE t.dueDate > ? AND t.isCompleted = 0\n"
+            + "        ORDER BY t.dueDate ASC\n"
+            + "    ";
+    return __db.getInvalidationTracker().createLiveData(new String[] {"tasks",
+        "courses"}, false, (_connection) -> {
+      final SQLiteStatement _stmt = _connection.prepare(_sql);
+      try {
+        int _argIndex = 1;
+        _stmt.bindLong(_argIndex, afterDate);
+        final int _columnIndexOfTaskId = 0;
+        final int _columnIndexOfCourseId = 1;
+        final int _columnIndexOfTitle = 2;
+        final int _columnIndexOfDescription = 3;
+        final int _columnIndexOfDueDate = 4;
+        final int _columnIndexOfIsCompleted = 5;
+        final int _columnIndexOfPriority = 6;
+        final int _columnIndexOfType = 7;
+        final int _columnIndexOfCourseName = 8;
+        final List<TaskWithCourseName> _result = new ArrayList<TaskWithCourseName>();
+        while (_stmt.step()) {
+          final TaskWithCourseName _item;
+          final long _tmpTaskId;
+          _tmpTaskId = _stmt.getLong(_columnIndexOfTaskId);
+          final long _tmpCourseId;
+          _tmpCourseId = _stmt.getLong(_columnIndexOfCourseId);
+          final String _tmpTitle;
+          if (_stmt.isNull(_columnIndexOfTitle)) {
+            _tmpTitle = null;
+          } else {
+            _tmpTitle = _stmt.getText(_columnIndexOfTitle);
+          }
+          final String _tmpDescription;
+          if (_stmt.isNull(_columnIndexOfDescription)) {
+            _tmpDescription = null;
+          } else {
+            _tmpDescription = _stmt.getText(_columnIndexOfDescription);
+          }
+          final long _tmpDueDate;
+          _tmpDueDate = _stmt.getLong(_columnIndexOfDueDate);
+          final boolean _tmpIsCompleted;
+          final int _tmp;
+          _tmp = (int) (_stmt.getLong(_columnIndexOfIsCompleted));
+          _tmpIsCompleted = _tmp != 0;
+          final Priority _tmpPriority;
+          final String _tmp_1;
+          if (_stmt.isNull(_columnIndexOfPriority)) {
+            _tmp_1 = null;
+          } else {
+            _tmp_1 = _stmt.getText(_columnIndexOfPriority);
+          }
+          _tmpPriority = __converters.toPriority(_tmp_1);
+          final TaskType _tmpType;
+          final String _tmp_2;
+          if (_stmt.isNull(_columnIndexOfType)) {
+            _tmp_2 = null;
+          } else {
+            _tmp_2 = _stmt.getText(_columnIndexOfType);
+          }
+          _tmpType = __converters.toTaskType(_tmp_2);
+          final String _tmpCourseName;
+          if (_stmt.isNull(_columnIndexOfCourseName)) {
+            _tmpCourseName = null;
+          } else {
+            _tmpCourseName = _stmt.getText(_columnIndexOfCourseName);
+          }
+          _item = new TaskWithCourseName(_tmpTaskId,_tmpCourseId,_tmpTitle,_tmpDescription,_tmpDueDate,_tmpIsCompleted,_tmpPriority,_tmpType,_tmpCourseName);
+          _result.add(_item);
+        }
+        return _result;
+      } finally {
+        _stmt.close();
+      }
+    });
+  }
+
+  @Override
   public LiveData<Integer> getPendingTaskCount(final long courseId) {
     final String _sql = "SELECT COUNT(*) FROM tasks WHERE courseId = ? AND isCompleted = 0";
     return __db.getInvalidationTracker().createLiveData(new String[] {"tasks"}, false, (_connection) -> {

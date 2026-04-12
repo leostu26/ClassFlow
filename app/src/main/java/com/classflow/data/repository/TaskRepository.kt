@@ -26,6 +26,9 @@ class TaskRepository(private val taskDao: TaskDao) {
     fun getTasksWithCourseNameDueSoon(start: Long, end: Long): LiveData<List<TaskWithCourseName>> =
         taskDao.getTasksWithCourseNameDueSoon(start, end)
 
+    fun getTasksWithCourseNameFuture(afterDate: Long): LiveData<List<TaskWithCourseName>> =
+        taskDao.getTasksWithCourseNameFuture(afterDate)
+
     suspend fun getTaskById(taskId: Long): Task? = taskDao.getTaskById(taskId)
 
     suspend fun insert(task: Task): Long = taskDao.insertTask(task)

@@ -30,6 +30,16 @@ interface TaskDao {
     """)
     fun getTasksWithCourseNameDueSoon(start: Long, end: Long): LiveData<List<TaskWithCourseName>>
 
+    @Query("""
+        SELECT t.id as taskId, t.courseId, t.title, t.description, t.dueDate, 
+               t.isCompleted, t.priority, t.type, c.name as courseName
+        FROM tasks t
+        INNER JOIN courses c ON t.courseId = c.id
+        WHERE t.dueDate > :afterDate AND t.isCompleted = 0
+        ORDER BY t.dueDate ASC
+    """)
+    fun getTasksWithCourseNameFuture(afterDate: Long): LiveData<List<TaskWithCourseName>>
+
     @Query("SELECT COUNT(*) FROM tasks WHERE courseId = :courseId AND isCompleted = 0")
     fun getPendingTaskCount(courseId: Long): LiveData<Int>
 

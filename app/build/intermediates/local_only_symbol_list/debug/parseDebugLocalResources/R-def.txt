@@ -5,6 +5,8 @@ color background
 color bottom_nav_selected
 color bottom_nav_selector
 color bottom_nav_unselected
+color cancel_bg
+color cancel_text
 color completed
 color due_soon
 color overdue
@@ -65,12 +67,15 @@ id et_room
 id et_schedule
 id et_task_description
 id et_task_title
+id guideline_splash
 id homeFragment
 id iv_splash_logo
 id nav_graph
 id nav_host_fragment
 id progress_bar
 id rv_courses
+id rv_due_today
+id rv_future_tasks
 id rv_tasks
 id rv_upcoming_tasks
 id spinner_priority
@@ -88,8 +93,10 @@ id tv_due_date
 id tv_empty
 id tv_greeting
 id tv_instructor
+id tv_no_future
 id tv_no_tasks
-id tv_no_upcoming
+id tv_no_today
+id tv_no_week
 id tv_pending_count
 id tv_progress
 id tv_schedule

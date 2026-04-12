@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -25,7 +26,13 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final Button btnViewAllTasks;
 
   @NonNull
-  public final TextView btnViewClasses;
+  public final LinearLayout btnViewClasses;
+
+  @NonNull
+  public final RecyclerView rvDueToday;
+
+  @NonNull
+  public final RecyclerView rvFutureTasks;
 
   @NonNull
   public final RecyclerView rvUpcomingTasks;
@@ -40,23 +47,35 @@ public final class FragmentHomeBinding implements ViewBinding {
   public final TextView tvGreeting;
 
   @NonNull
-  public final TextView tvNoUpcoming;
+  public final TextView tvNoFuture;
+
+  @NonNull
+  public final TextView tvNoToday;
+
+  @NonNull
+  public final TextView tvNoWeek;
 
   @NonNull
   public final TextView tvPendingCount;
 
   private FragmentHomeBinding(@NonNull ScrollView rootView, @NonNull Button btnViewAllTasks,
-      @NonNull TextView btnViewClasses, @NonNull RecyclerView rvUpcomingTasks,
+      @NonNull LinearLayout btnViewClasses, @NonNull RecyclerView rvDueToday,
+      @NonNull RecyclerView rvFutureTasks, @NonNull RecyclerView rvUpcomingTasks,
       @NonNull TextView tvCourseCount, @NonNull TextView tvDate, @NonNull TextView tvGreeting,
-      @NonNull TextView tvNoUpcoming, @NonNull TextView tvPendingCount) {
+      @NonNull TextView tvNoFuture, @NonNull TextView tvNoToday, @NonNull TextView tvNoWeek,
+      @NonNull TextView tvPendingCount) {
     this.rootView = rootView;
     this.btnViewAllTasks = btnViewAllTasks;
     this.btnViewClasses = btnViewClasses;
+    this.rvDueToday = rvDueToday;
+    this.rvFutureTasks = rvFutureTasks;
     this.rvUpcomingTasks = rvUpcomingTasks;
     this.tvCourseCount = tvCourseCount;
     this.tvDate = tvDate;
     this.tvGreeting = tvGreeting;
-    this.tvNoUpcoming = tvNoUpcoming;
+    this.tvNoFuture = tvNoFuture;
+    this.tvNoToday = tvNoToday;
+    this.tvNoWeek = tvNoWeek;
     this.tvPendingCount = tvPendingCount;
   }
 
@@ -94,8 +113,20 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       id = R.id.btn_view_classes;
-      TextView btnViewClasses = ViewBindings.findChildViewById(rootView, id);
+      LinearLayout btnViewClasses = ViewBindings.findChildViewById(rootView, id);
       if (btnViewClasses == null) {
+        break missingId;
+      }
+
+      id = R.id.rv_due_today;
+      RecyclerView rvDueToday = ViewBindings.findChildViewById(rootView, id);
+      if (rvDueToday == null) {
+        break missingId;
+      }
+
+      id = R.id.rv_future_tasks;
+      RecyclerView rvFutureTasks = ViewBindings.findChildViewById(rootView, id);
+      if (rvFutureTasks == null) {
         break missingId;
       }
 
@@ -123,9 +154,21 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.tv_no_upcoming;
-      TextView tvNoUpcoming = ViewBindings.findChildViewById(rootView, id);
-      if (tvNoUpcoming == null) {
+      id = R.id.tv_no_future;
+      TextView tvNoFuture = ViewBindings.findChildViewById(rootView, id);
+      if (tvNoFuture == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_no_today;
+      TextView tvNoToday = ViewBindings.findChildViewById(rootView, id);
+      if (tvNoToday == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_no_week;
+      TextView tvNoWeek = ViewBindings.findChildViewById(rootView, id);
+      if (tvNoWeek == null) {
         break missingId;
       }
 
@@ -136,7 +179,8 @@ public final class FragmentHomeBinding implements ViewBinding {
       }
 
       return new FragmentHomeBinding((ScrollView) rootView, btnViewAllTasks, btnViewClasses,
-          rvUpcomingTasks, tvCourseCount, tvDate, tvGreeting, tvNoUpcoming, tvPendingCount);
+          rvDueToday, rvFutureTasks, rvUpcomingTasks, tvCourseCount, tvDate, tvGreeting, tvNoFuture,
+          tvNoToday, tvNoWeek, tvPendingCount);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

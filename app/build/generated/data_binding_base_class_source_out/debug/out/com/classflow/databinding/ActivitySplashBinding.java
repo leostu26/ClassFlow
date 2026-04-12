@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.Guideline;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
@@ -20,11 +21,15 @@ public final class ActivitySplashBinding implements ViewBinding {
   private final ConstraintLayout rootView;
 
   @NonNull
+  public final Guideline guidelineSplash;
+
+  @NonNull
   public final ImageView ivSplashLogo;
 
   private ActivitySplashBinding(@NonNull ConstraintLayout rootView,
-      @NonNull ImageView ivSplashLogo) {
+      @NonNull Guideline guidelineSplash, @NonNull ImageView ivSplashLogo) {
     this.rootView = rootView;
+    this.guidelineSplash = guidelineSplash;
     this.ivSplashLogo = ivSplashLogo;
   }
 
@@ -55,13 +60,19 @@ public final class ActivitySplashBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.guideline_splash;
+      Guideline guidelineSplash = ViewBindings.findChildViewById(rootView, id);
+      if (guidelineSplash == null) {
+        break missingId;
+      }
+
       id = R.id.iv_splash_logo;
       ImageView ivSplashLogo = ViewBindings.findChildViewById(rootView, id);
       if (ivSplashLogo == null) {
         break missingId;
       }
 
-      return new ActivitySplashBinding((ConstraintLayout) rootView, ivSplashLogo);
+      return new ActivitySplashBinding((ConstraintLayout) rootView, guidelineSplash, ivSplashLogo);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

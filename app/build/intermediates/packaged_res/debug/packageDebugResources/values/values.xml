@@ -4,6 +4,8 @@
     <color name="background">#F4F6FB</color>
     <color name="bottom_nav_selected">#3D5AFE</color>
     <color name="bottom_nav_unselected">#9CA3AF</color>
+    <color name="cancel_bg">#FFEBEE</color>
+    <color name="cancel_text">#C62828</color>
     <color name="completed">#6B7280</color>
     <color name="due_soon">#D97706</color>
     <color name="overdue">#DC2626</color>
