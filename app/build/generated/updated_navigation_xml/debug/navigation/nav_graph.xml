@@ -1,0 +1,89 @@
+<navigation
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/nav_graph"
+app:startDestination="@id/homeFragment" >
+<fragment
+    android:id="@+id/homeFragment"
+    android:name="com.classflow.ui.home.HomeFragment"
+    android:label="Home"
+    tools:layout="@layout/fragment_home" >
+
+    <action
+        android:id="@+id/action_homeFragment_to_classListFragment"
+        app:destination="@id/classListFragment" />
+    <action
+        android:id="@+id/action_homeFragment_to_taskDetailFragment"
+        app:destination="@id/taskDetailFragment" />
+
+</fragment>
+<fragment
+    android:id="@+id/classListFragment"
+    android:name="com.classflow.ui.classlist.ClassListFragment"
+    android:label="My Classes"
+    tools:layout="@layout/fragment_class_list" >
+
+    <action
+        android:id="@+id/action_classListFragment_to_addClassFragment"
+        app:destination="@id/addClassFragment" />
+    <action
+        android:id="@+id/action_classListFragment_to_tasksFragment"
+        app:destination="@id/tasksFragment" />
+
+</fragment>
+<fragment
+    android:id="@+id/addClassFragment"
+    android:name="com.classflow.ui.addclass.AddClassFragment"
+    android:label="Add Class"
+    tools:layout="@layout/fragment_add_class" />
+<fragment
+    android:id="@+id/tasksFragment"
+    android:name="com.classflow.ui.tasks.TasksFragment"
+    android:label="Tasks"
+    tools:layout="@layout/fragment_tasks" >
+
+    <argument
+        android:name="courseId"
+        app:argType="long" />
+    <argument
+        android:name="courseName"
+        app:argType="string" />
+
+    <action
+        android:id="@+id/action_tasksFragment_to_addTaskFragment"
+        app:destination="@id/addTaskFragment" />
+    <action
+        android:id="@+id/action_tasksFragment_to_taskDetailFragment"
+        app:destination="@id/taskDetailFragment" />
+
+</fragment>
+<fragment
+    android:id="@+id/addTaskFragment"
+    android:name="com.classflow.ui.tasks.AddTaskFragment"
+    android:label="Add Task"
+    tools:layout="@layout/fragment_add_task" >
+
+    <argument
+        android:name="courseId"
+        app:argType="long" />
+    <argument
+        android:name="courseName"
+        app:argType="string" />
+
+</fragment>
+<fragment
+    android:id="@+id/taskDetailFragment"
+    android:name="com.classflow.ui.tasks.TaskDetailFragment"
+    android:label="Task Detail"
+    tools:layout="@layout/fragment_task_detail" >
+
+    <argument
+        android:name="taskId"
+        app:argType="long" />
+    <argument
+        android:name="courseName"
+        app:argType="string" />
+
+</fragment>
+</navigation>

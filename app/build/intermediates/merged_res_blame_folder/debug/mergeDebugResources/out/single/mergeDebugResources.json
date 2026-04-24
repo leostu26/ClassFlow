@@ -1,0 +1,142 @@
+[
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-hdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_item_task_home.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_task_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_class_list.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_class_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-anydpi-v26\\ic_launcher.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_home.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_home.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_splash_screen.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\splash_screen.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_item_task.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\menu_bottom_nav_menu.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\menu\\bottom_nav_menu.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_chip_background.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\chip_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_tasks.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_tasks.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-mdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\color_bottom_nav_selector.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\color\\bottom_nav_selector.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_ic_launcher_background.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\ic_launcher_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\menu_menu_class_list.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\menu\\menu_class_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_spinner_background.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\spinner_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_activity_splash.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_add_task.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_add_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_circle_shape.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\circle_shape.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xxxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_ic_launcher_foreground.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_task_detail.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_task_detail.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_fragment_add_class.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_add_class.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xxxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-mdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-hdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_item_course.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\drawable_ic_splash_logo.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\drawable\\ic_splash_logo.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xxhdpi\\ic_launcher_round.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-anydpi-v26\\ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.classflow.app-debug-52:/layout_activity_splash.xml.flat",
+        "source": "com.classflow.app-main-54:/layout/activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\mipmap-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\menu_menu_tasks.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\menu\\menu_tasks.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-debug-52:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\activity_main.xml"
+    }
+]

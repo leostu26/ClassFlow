@@ -1,0 +1,1 @@
+[{"navFile":"src\\main\\res\\navigation\\nav_graph.xml","javaFiles":["com.classflow.ui.home.HomeFragmentDirections","com.classflow.ui.classlist.ClassListFragmentDirections","com.classflow.ui.tasks.TasksFragmentDirections","com.classflow.ui.tasks.TasksFragmentArgs","com.classflow.ui.tasks.AddTaskFragmentArgs","com.classflow.ui.tasks.TaskDetailFragmentArgs"]}]
