@@ -1,0 +1,45 @@
+# Built application files
+*.apk
+*.aar
+*.ap_
+*.aab
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Java class files
+*.class
+
+# Generated files
+bin/
+gen/
+out/
+release/
+
+# Gradle files
+.gradle/
+build/
+
+# Local configuration file (contains SDK path - DO NOT commit)
+local.properties
+
+# Android Studio / IntelliJ IDEA
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Keystore files (never commit these)
+*.jks
+*.keystore
+
+# Google Services (if using Firebase)
+google-services.json
+
+# Proguard
+proguard/
+
+# OS files
+.DS_Store
+Thumbs.db

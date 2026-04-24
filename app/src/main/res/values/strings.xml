@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ClassFlow</string>
+    <string name="nav_home">Home</string>
+    <string name="nav_classes">Classes</string>
+    <string name="add_class">Add Class</string>
+    <string name="add_task">Add Task</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
+    <string name="no_classes">No classes yet. Tap + to add your first class!</string>
+    <string name="no_tasks">No tasks yet. Tap + to add an assignment!</string>
+</resources>
