@@ -217,6 +217,10 @@ How heavy is my week?
    - Planned for a future update.
    - This screen may include theme options, notification preferences, default task priority, default task type, week-start preference, and app information.
 
+6. **Swipe Actions for Task Cards**
+   - Planned for a future update.
+   - This feature will make task cards faster to use on mobile by supporting swipe gestures on Home and Timeline cards.
+
 ## Planned / Future Features
 
 ### 1. Syllabus Task Setup
@@ -275,7 +279,30 @@ Planned settings options:
   - Project description
   - GitHub repository link
 
-### 3. Notification Reminders
+### 3. Swipe Actions for Task Cards
+
+Planned swipe actions for faster mobile task handling.
+
+Planned behavior:
+
+- Swipe left on a task card to mark the task as completed
+- Swipe right on a task card to open the Task Detail screen
+- Show a snackbar with an Undo option after marking a task complete
+- Apply swipe actions to:
+  - Home screen task cards
+  - Timeline / Gantt task cards
+- Do not use swipe gestures for delete actions
+
+Example:
+
+| Swipe Direction | Action |
+|---|---|
+| Left | Mark task completed |
+| Right | Open task details |
+
+This feature will make task management faster while keeping destructive actions protected.
+
+### 4. Notification Reminders
 
 Planned reminder feature for upcoming and overdue tasks.
 
@@ -287,7 +314,7 @@ Possible options:
 - High-priority task reminders
 - Overdue task reminders
 
-### 4. Calendar View
+### 5. Calendar View
 
 Possible future calendar-based task view.
 
@@ -297,6 +324,42 @@ Planned concept:
 - Task count indicators on each day
 - Tap a day to view tasks due that day
 - Completed and overdue visual states
+
+### 6. Search and Filter
+
+Planned search and filtering feature for finding tasks quickly as the app grows.
+
+Possible filters:
+
+- Class
+- Priority
+- Task type
+- Completed / incomplete
+- Overdue
+- Due this week
+- Due date range
+
+### 7. Task Notes / Attachments
+
+Possible future feature for adding more assignment details.
+
+Planned concept:
+
+- Add extra task notes
+- Add links to assignment pages
+- Add file references
+- Store syllabus notes or professor instructions
+
+### 8. Export Backup / Import Backup
+
+Possible future backup feature.
+
+Planned concept:
+
+- Export classes and tasks to CSV
+- Import tasks from CSV
+- Backup local database
+- Restore from backup
 
 ## Screen Plan
 
@@ -320,7 +383,7 @@ This week, ClassFlow was expanded beyond the core class and task management feat
 
 The Gantt Chart View provides a 2-week visual timeline with both All Tasks and By Class views. The Weekly Workload Tracker summarizes task load by week using task type, priority, due dates, and completion status.
 
-The Manual Bulk Syllabus Task Setup feature was planned but not completed this week. It has been deferred to next week. A future Settings screen was also added to the project plan.
+The Manual Bulk Syllabus Task Setup feature was planned but not completed this week. It has been deferred to next week. A future Settings screen and Swipe Actions for Task Cards were also added to the project plan.
 
 ## Project Status
 
