@@ -8,4 +8,10 @@
         android:title="Add Task"
         app:showAsAction="always" />
 
+    <item
+        android:id="@+id/action_syllabus_setup"
+        android:icon="@drawable/ic_more_vert"
+        android:title="Syllabus Task Setup"
+        app:showAsAction="always" />
+
 </menu>

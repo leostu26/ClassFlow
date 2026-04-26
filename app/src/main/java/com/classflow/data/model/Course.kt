@@ -12,5 +12,8 @@ data class Course(
     val instructor: String = "",
     val color: String = "#4A90D9",
     val schedule: String = "",
-    val room: String = ""
+    val room: String = "",
+    val classMode: String = "In Person",
+    val meetingLink: String = "",
+    val platform: String = ""
 )

@@ -16,4 +16,8 @@ class CourseRepository(private val courseDao: CourseDao) {
     suspend fun delete(course: Course) = courseDao.deleteCourse(course)
 
     suspend fun getCourseById(id: Long): Course? = courseDao.getCourseById(id)
+
+    suspend fun getAllCoursesOnce(): List<Course> = courseDao.getAllCoursesOnce()
+
+    suspend fun deleteAllCourses() = courseDao.deleteAllCourses()
 }

@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.classflow.R
-import com.classflow.data.model.Priority
 import com.classflow.data.model.Task
 import com.classflow.databinding.ItemTaskBinding
 import com.classflow.util.DateUtils
+import com.classflow.util.TaskColorUtils
 
 class TaskAdapter(
     private val onChecked: (Task, Boolean) -> Unit,
@@ -32,30 +32,28 @@ class TaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(task: Task) {
+            val ctx = binding.root.context
+
             binding.tvTaskTitle.text = task.title
             binding.tvDueDate.text = DateUtils.formatDate(task.dueDate)
             binding.tvTaskType.text = task.type.name.lowercase()
                 .replaceFirstChar { it.uppercase() }
 
-            // Priority indicator color
-            val priorityColor = when (task.priority) {
-                Priority.HIGH -> R.color.priority_high
-                Priority.MEDIUM -> R.color.priority_medium
-                Priority.LOW -> R.color.priority_low
-            }
+            // Left bar = priority color (Tasks screen is scoped to one class)
             binding.viewPriority.setBackgroundColor(
-                ContextCompat.getColor(binding.root.context, priorityColor)
+                TaskColorUtils.priorityColorInt(task.priority, ctx)
             )
 
-            // Overdue styling
+            // Priority chip = priority color
+            binding.tvPriorityChip.text = task.priority.name.lowercase()
+                .replaceFirstChar { it.uppercase() }
+            binding.tvPriorityChip.setTextColor(TaskColorUtils.priorityColorInt(task.priority, ctx))
+
+            // Overdue due date
             if (!task.isCompleted && DateUtils.isOverdue(task.dueDate)) {
-                binding.tvDueDate.setTextColor(
-                    ContextCompat.getColor(binding.root.context, R.color.overdue)
-                )
+                binding.tvDueDate.setTextColor(ContextCompat.getColor(ctx, R.color.overdue))
             } else {
-                binding.tvDueDate.setTextColor(
-                    ContextCompat.getColor(binding.root.context, R.color.text_secondary)
-                )
+                binding.tvDueDate.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary))
             }
 
             // Completed styling

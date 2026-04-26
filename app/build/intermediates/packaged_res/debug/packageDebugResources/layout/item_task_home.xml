@@ -59,7 +59,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:text="Course"
-                    android:textColor="@color/primary"
+                    android:textColor="@color/text_secondary"
                     android:textSize="11sp"
                     android:textStyle="italic"
                     android:maxLines="1"
@@ -67,7 +67,7 @@
 
             </LinearLayout>
 
-            <!-- Bottom row: type chip + due date -->
+            <!-- Bottom row: type chip + priority chip + due date -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -86,6 +86,20 @@
                     android:paddingBottom="2dp"
                     android:text="Assignment"
                     android:textColor="@color/primary"
+                    android:textSize="11sp" />
+
+                <TextView
+                    android:id="@+id/tv_priority_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/priority_chip_bg"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="High"
+                    android:textColor="@color/priority_high"
                     android:textSize="11sp" />
 
                 <TextView

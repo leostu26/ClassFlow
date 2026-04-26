@@ -11,6 +11,9 @@
         android:icon="@android:drawable/ic_menu_agenda"
         android:title="Classes" />
 
-
+    <item
+        android:id="@+id/ganttChartFragment"
+        android:icon="@android:drawable/ic_menu_sort_by_size"
+        android:title="Timeline" />
 
 </menu>

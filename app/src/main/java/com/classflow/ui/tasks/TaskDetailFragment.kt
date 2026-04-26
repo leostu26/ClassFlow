@@ -14,7 +14,6 @@ import androidx.navigation.fragment.navArgs
 import com.classflow.data.model.Priority
 import com.classflow.data.model.TaskType
 import com.classflow.databinding.FragmentTaskDetailBinding
-import com.classflow.util.DateUtils
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -27,6 +26,9 @@ class TaskDetailFragment : Fragment() {
 
     private var selectedDueDate: Long = 0L
     private val dateFormatter = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+
+    private val typeValues = TaskType.values()
+    private val priorityValues = Priority.values()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +43,7 @@ class TaskDetailFragment : Fragment() {
 
         binding.tvCourseLabel.text = "Course: ${args.courseName}"
 
-        setupSpinners()
+        setupDropdowns()
         setupDatePicker()
         viewModel.loadTask(args.taskId)
 
@@ -52,8 +54,8 @@ class TaskDetailFragment : Fragment() {
             selectedDueDate = task.dueDate
             binding.tvSelectedDate.text = if (task.dueDate == 0L) "No date set"
                 else dateFormatter.format(Date(task.dueDate))
-            binding.spinnerPriority.setSelection(task.priority.ordinal)
-            binding.spinnerType.setSelection(task.type.ordinal)
+            binding.actPriority.setText(task.priority.label(), false)
+            binding.actType.setText(task.type.label(), false)
             binding.cbCompleted.isChecked = task.isCompleted
         }
 
@@ -68,22 +70,16 @@ class TaskDetailFragment : Fragment() {
         }
     }
 
-    private fun setupSpinners() {
-        val priorityAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            Priority.values().map { it.name.lowercase().replaceFirstChar { c -> c.uppercase() } }
+    private fun setupDropdowns() {
+        val typeLabels = typeValues.map { it.label() }
+        binding.actType.setAdapter(
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, typeLabels)
         )
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerPriority.adapter = priorityAdapter
 
-        val typeAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            TaskType.values().map { it.name.lowercase().replaceFirstChar { c -> c.uppercase() } }
+        val priorityLabels = priorityValues.map { it.label() }
+        binding.actPriority.setAdapter(
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, priorityLabels)
         )
-        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerType.adapter = typeAdapter
     }
 
     private fun setupDatePicker() {
@@ -111,12 +107,17 @@ class TaskDetailFragment : Fragment() {
             return
         }
         val task = viewModel.task.value ?: return
-        val priority = Priority.values()[binding.spinnerPriority.selectedItemPosition]
-        val type = TaskType.values()[binding.spinnerType.selectedItemPosition]
+
+        val selectedType = binding.actType.text.toString()
+        val type = typeValues.firstOrNull { it.label() == selectedType } ?: TaskType.ASSIGNMENT
+
+        val selectedPriority = binding.actPriority.text.toString()
+        val priority = priorityValues.firstOrNull { it.label() == selectedPriority } ?: Priority.MEDIUM
 
         viewModel.saveTask(
             taskId = task.id,
             courseId = task.courseId,
+            courseName = args.courseName,
             title = title,
             description = binding.etDescription.text.toString().trim(),
             dueDate = selectedDueDate,
@@ -133,3 +134,6 @@ class TaskDetailFragment : Fragment() {
         _binding = null
     }
 }
+
+private fun TaskType.label(): String = name.lowercase().replaceFirstChar { it.uppercase() }
+private fun Priority.label(): String = name.lowercase().replaceFirstChar { it.uppercase() }

@@ -24,4 +24,10 @@ interface CourseDao {
 
     @Query("SELECT COUNT(*) FROM courses")
     fun getCourseCount(): LiveData<Int>
+
+    @Query("SELECT * FROM courses ORDER BY name ASC")
+    suspend fun getAllCoursesOnce(): List<Course>
+
+    @Query("DELETE FROM courses")
+    suspend fun deleteAllCourses()
 }

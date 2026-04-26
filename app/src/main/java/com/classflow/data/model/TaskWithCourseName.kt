@@ -12,7 +12,8 @@ data class TaskWithCourseName(
     val isCompleted: Boolean,
     val priority: Priority,
     val type: TaskType,
-    val courseName: String
+    val courseName: String,
+    val courseColor: String = "#4A90D9"
 ) {
     fun toTask() = Task(
         id = taskId,

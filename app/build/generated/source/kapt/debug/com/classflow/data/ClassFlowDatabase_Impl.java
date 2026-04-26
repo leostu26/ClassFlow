@@ -34,14 +34,14 @@ public final class ClassFlowDatabase_Impl extends ClassFlowDatabase {
   @Override
   @NonNull
   protected RoomOpenDelegate createOpenDelegate() {
-    final RoomOpenDelegate _openDelegate = new RoomOpenDelegate(1, "49a2e6b8c68abbbc1885a28c5552c422", "9816fba175b5275f159be0e75aead621") {
+    final RoomOpenDelegate _openDelegate = new RoomOpenDelegate(2, "50e790303d675f4551709f9991888ca0", "f3b8bea95b10fa21d3517b12e4a7e768") {
       @Override
       public void createAllTables(@NonNull final SQLiteConnection connection) {
-        SQLite.execSQL(connection, "CREATE TABLE IF NOT EXISTS `courses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `code` TEXT NOT NULL, `instructor` TEXT NOT NULL, `color` TEXT NOT NULL, `schedule` TEXT NOT NULL, `room` TEXT NOT NULL)");
+        SQLite.execSQL(connection, "CREATE TABLE IF NOT EXISTS `courses` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `code` TEXT NOT NULL, `instructor` TEXT NOT NULL, `color` TEXT NOT NULL, `schedule` TEXT NOT NULL, `room` TEXT NOT NULL, `classMode` TEXT NOT NULL, `meetingLink` TEXT NOT NULL, `platform` TEXT NOT NULL)");
         SQLite.execSQL(connection, "CREATE TABLE IF NOT EXISTS `tasks` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `courseId` INTEGER NOT NULL, `title` TEXT NOT NULL, `description` TEXT NOT NULL, `dueDate` INTEGER NOT NULL, `isCompleted` INTEGER NOT NULL, `priority` TEXT NOT NULL, `type` TEXT NOT NULL, FOREIGN KEY(`courseId`) REFERENCES `courses`(`id`) ON UPDATE NO ACTION ON DELETE CASCADE )");
         SQLite.execSQL(connection, "CREATE INDEX IF NOT EXISTS `index_tasks_courseId` ON `tasks` (`courseId`)");
         SQLite.execSQL(connection, "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)");
-        SQLite.execSQL(connection, "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '49a2e6b8c68abbbc1885a28c5552c422')");
+        SQLite.execSQL(connection, "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50e790303d675f4551709f9991888ca0')");
       }
 
       @Override
@@ -73,7 +73,7 @@ public final class ClassFlowDatabase_Impl extends ClassFlowDatabase {
       @NonNull
       public RoomOpenDelegate.ValidationResult onValidateSchema(
           @NonNull final SQLiteConnection connection) {
-        final Map<String, TableInfo.Column> _columnsCourses = new HashMap<String, TableInfo.Column>(7);
+        final Map<String, TableInfo.Column> _columnsCourses = new HashMap<String, TableInfo.Column>(10);
         _columnsCourses.put("id", new TableInfo.Column("id", "INTEGER", true, 1, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCourses.put("name", new TableInfo.Column("name", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCourses.put("code", new TableInfo.Column("code", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
@@ -81,6 +81,9 @@ public final class ClassFlowDatabase_Impl extends ClassFlowDatabase {
         _columnsCourses.put("color", new TableInfo.Column("color", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCourses.put("schedule", new TableInfo.Column("schedule", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         _columnsCourses.put("room", new TableInfo.Column("room", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCourses.put("classMode", new TableInfo.Column("classMode", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCourses.put("meetingLink", new TableInfo.Column("meetingLink", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
+        _columnsCourses.put("platform", new TableInfo.Column("platform", "TEXT", true, 0, null, TableInfo.CREATED_FROM_ENTITY));
         final Set<TableInfo.ForeignKey> _foreignKeysCourses = new HashSet<TableInfo.ForeignKey>(0);
         final Set<TableInfo.Index> _indicesCourses = new HashSet<TableInfo.Index>(0);
         final TableInfo _infoCourses = new TableInfo("courses", _columnsCourses, _foreignKeysCourses, _indicesCourses);

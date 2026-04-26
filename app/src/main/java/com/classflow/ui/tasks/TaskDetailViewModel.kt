@@ -10,6 +10,7 @@ import com.classflow.data.model.Priority
 import com.classflow.data.model.Task
 import com.classflow.data.model.TaskType
 import com.classflow.data.repository.TaskRepository
+import com.classflow.notification.ReminderScheduler
 import kotlinx.coroutines.launch
 
 class TaskDetailViewModel(application: Application) : AndroidViewModel(application) {
@@ -31,6 +32,7 @@ class TaskDetailViewModel(application: Application) : AndroidViewModel(applicati
     fun saveTask(
         taskId: Long,
         courseId: Long,
+        courseName: String,
         title: String,
         description: String,
         dueDate: Long,
@@ -49,9 +51,15 @@ class TaskDetailViewModel(application: Application) : AndroidViewModel(applicati
             isCompleted = isCompleted
         )
         repository.update(task)
+        if (isCompleted || dueDate == 0L) {
+            ReminderScheduler.cancelTaskReminder(getApplication(), taskId)
+        } else {
+            ReminderScheduler.scheduleTaskReminder(getApplication(), task, courseName)
+        }
     }
 
     fun deleteTask(task: Task) = viewModelScope.launch {
         repository.delete(task)
+        ReminderScheduler.cancelTaskReminder(getApplication(), task.id)
     }
 }

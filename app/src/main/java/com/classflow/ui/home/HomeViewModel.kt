@@ -3,11 +3,14 @@ package com.classflow.ui.home
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.classflow.data.ClassFlowDatabase
 import com.classflow.data.model.TaskWithCourseName
 import com.classflow.data.repository.CourseRepository
 import com.classflow.data.repository.TaskRepository
+import com.classflow.notification.ReminderScheduler
 import com.classflow.util.DateUtils
+import kotlinx.coroutines.launch
 
 class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -34,6 +37,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         courseCount = courseRepository.courseCount
         pendingTaskCount = taskRepository.totalPendingCount
 
+        // TODO: filter completed tasks from all three lists based on showCompletedTasks from SettingsRepository
         tasksDueToday = taskRepository.getTasksWithCourseNameDueSoon(
             DateUtils.todayStart(),
             DateUtils.todayEnd()
@@ -45,5 +49,14 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
         tasksFuture = taskRepository.getTasksWithCourseNameFuture(
             DateUtils.daysFromNow(7)
         )
+    }
+
+    fun setTaskCompleted(taskId: Long, completed: Boolean) = viewModelScope.launch {
+        taskRepository.setCompleted(taskId, completed)
+        if (completed) {
+            ReminderScheduler.cancelTaskReminder(getApplication(), taskId)
+        } else {
+            ReminderScheduler.scheduleTaskReminderById(getApplication(), taskId)
+        }
     }
 }

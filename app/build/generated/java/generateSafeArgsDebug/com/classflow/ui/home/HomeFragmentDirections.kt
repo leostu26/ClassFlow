@@ -31,5 +31,11 @@ public class HomeFragmentDirections private constructor() {
 
     @CheckResult
     public fun actionHomeFragmentToTaskDetailFragment(taskId: Long, courseName: String): NavDirections = ActionHomeFragmentToTaskDetailFragment(taskId, courseName)
+
+    @CheckResult
+    public fun actionHomeFragmentToSettingsFragment(): NavDirections = ActionOnlyNavDirections(R.id.action_homeFragment_to_settingsFragment)
+
+    @CheckResult
+    public fun actionHomeFragmentToSearchTasksFragment(): NavDirections = ActionOnlyNavDirections(R.id.action_homeFragment_to_searchTasksFragment)
   }
 }

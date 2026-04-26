@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.classflow.data.model.Priority
 import com.classflow.data.model.TaskType
 import com.classflow.databinding.FragmentAddTaskBinding
+import com.classflow.ui.settings.SettingsRepository
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -26,6 +27,9 @@ class AddTaskFragment : Fragment() {
 
     private var selectedDueDate: Long = 0L
     private val dateFormatter = SimpleDateFormat("MMM dd, yyyy", Locale.getDefault())
+
+    private val typeValues = TaskType.values()
+    private val priorityValues = Priority.values()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,30 +44,33 @@ class AddTaskFragment : Fragment() {
 
         binding.tvCourseLabel.text = "Adding task to: ${args.courseName}"
 
-        setupSpinners()
+        setupDropdowns()
         setupDatePicker()
 
         binding.btnSaveTask.setOnClickListener { saveTask() }
         binding.btnCancel.setOnClickListener { findNavController().navigateUp() }
     }
 
-    private fun setupSpinners() {
-        val priorityAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            Priority.values().map { it.name.lowercase().replaceFirstChar { c -> c.uppercase() } }
-        )
-        priorityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerPriority.adapter = priorityAdapter
-        binding.spinnerPriority.setSelection(1) // Default MEDIUM
+    private fun setupDropdowns() {
+        val defaults = SettingsRepository(requireContext()).getUserSettings()
 
-        val typeAdapter = ArrayAdapter(
-            requireContext(),
-            android.R.layout.simple_spinner_item,
-            TaskType.values().map { it.name.lowercase().replaceFirstChar { c -> c.uppercase() } }
+        val typeLabels = typeValues.map { it.label() }
+        binding.actType.setAdapter(
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, typeLabels)
         )
-        typeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinnerType.adapter = typeAdapter
+        val defaultTypeIdx = typeValues
+            .indexOfFirst { it.name.equals(defaults.defaultTaskType, ignoreCase = true) }
+            .coerceAtLeast(0)
+        binding.actType.setText(typeLabels[defaultTypeIdx], false)
+
+        val priorityLabels = priorityValues.map { it.label() }
+        binding.actPriority.setAdapter(
+            ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, priorityLabels)
+        )
+        val defaultPriorityIdx = priorityValues
+            .indexOfFirst { it.name.equals(defaults.defaultPriority, ignoreCase = true) }
+            .coerceAtLeast(0)
+        binding.actPriority.setText(priorityLabels[defaultPriorityIdx], false)
     }
 
     private fun setupDatePicker() {
@@ -85,17 +92,21 @@ class AddTaskFragment : Fragment() {
 
     private fun saveTask() {
         val title = binding.etTaskTitle.text.toString().trim()
-        val description = binding.etTaskDescription.text.toString().trim()
 
         if (title.isEmpty()) {
             binding.etTaskTitle.error = "Task title is required"
             return
         }
 
-        val priority = Priority.values()[binding.spinnerPriority.selectedItemPosition]
-        val type = TaskType.values()[binding.spinnerType.selectedItemPosition]
+        val selectedType = binding.actType.text.toString()
+        val type = typeValues.firstOrNull { it.label() == selectedType } ?: TaskType.ASSIGNMENT
 
-        viewModel.saveTask(args.courseId, title, description, selectedDueDate, priority, type)
+        val selectedPriority = binding.actPriority.text.toString()
+        val priority = priorityValues.firstOrNull { it.label() == selectedPriority } ?: Priority.MEDIUM
+
+        viewModel.saveTask(args.courseId, args.courseName, title,
+            binding.etTaskDescription.text.toString().trim(),
+            selectedDueDate, priority, type)
         Toast.makeText(requireContext(), "Task added!", Toast.LENGTH_SHORT).show()
         findNavController().navigateUp()
     }
@@ -105,3 +116,6 @@ class AddTaskFragment : Fragment() {
         _binding = null
     }
 }
+
+private fun TaskType.label(): String = name.lowercase().replaceFirstChar { it.uppercase() }
+private fun Priority.label(): String = name.lowercase().replaceFirstChar { it.uppercase() }

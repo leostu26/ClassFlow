@@ -12,9 +12,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.classflow.R
+import com.classflow.data.model.TaskWithCourseInfo
 import com.classflow.databinding.FragmentGanttChartBinding
+import com.classflow.util.TaskSwipeCallback
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -47,6 +52,7 @@ class GanttChartFragment : Fragment() {
         adapter = GanttAdapter()
         binding.rvGantt.layoutManager = LinearLayoutManager(requireContext())
         binding.rvGantt.adapter = adapter
+        attachSwipeActions()
 
         // Navigation
         binding.btnPrevious.setOnClickListener { viewModel.previousWindow() }
@@ -187,6 +193,50 @@ class GanttChartFragment : Fragment() {
 
             row.addView(cell)
         }
+    }
+
+    private fun attachSwipeActions() {
+        val callback = TaskSwipeCallback(
+            onSwipeLeft = { pos ->
+                val task = ganttTaskAt(pos)
+                if (task != null) {
+                    if (task.isCompleted) {
+                        Snackbar.make(binding.root, "Already marked complete", Snackbar.LENGTH_SHORT).show()
+                        binding.rvGantt.adapter?.notifyItemChanged(pos)
+                    } else {
+                        viewModel.setTaskCompleted(task.taskId, true)
+                        Snackbar.make(binding.root, "Task marked complete", Snackbar.LENGTH_LONG)
+                            .setAction("Undo") { viewModel.setTaskCompleted(task.taskId, false) }
+                            .show()
+                    }
+                }
+            },
+            onSwipeRight = { pos ->
+                val task = ganttTaskAt(pos)
+                if (task != null) navigateToDetail(task.taskId, task.courseName)
+            },
+            isSwipeableAt = { pos ->
+                adapter.currentList.getOrNull(pos) !is GanttListItem.Header
+            }
+        )
+        ItemTouchHelper(callback).attachToRecyclerView(binding.rvGantt)
+    }
+
+    private fun ganttTaskAt(pos: Int): TaskWithCourseInfo? =
+        when (val item = adapter.currentList.getOrNull(pos)) {
+            is GanttListItem.TaskRow -> item.task
+            is GanttListItem.AllTaskRow -> item.task
+            else -> null
+        }
+
+    private fun navigateToDetail(taskId: Long, courseName: String) {
+        val bundle = Bundle().apply {
+            putLong("taskId", taskId)
+            putString("courseName", courseName)
+        }
+        requireParentFragment().findNavController().navigate(
+            R.id.action_ganttChartFragment_to_taskDetailFragment, bundle
+        )
     }
 
     override fun onDestroyView() {

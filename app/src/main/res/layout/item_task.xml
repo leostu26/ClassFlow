@@ -71,6 +71,20 @@
                     android:textSize="11sp" />
 
                 <TextView
+                    android:id="@+id/tv_priority_chip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:background="@drawable/priority_chip_bg"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:paddingTop="2dp"
+                    android:paddingBottom="2dp"
+                    android:text="High"
+                    android:textColor="@color/priority_high"
+                    android:textSize="11sp" />
+
+                <TextView
                     android:id="@+id/tv_due_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

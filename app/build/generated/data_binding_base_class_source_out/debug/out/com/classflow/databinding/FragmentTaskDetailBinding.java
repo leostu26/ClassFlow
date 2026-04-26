@@ -4,16 +4,16 @@ package com.classflow.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -24,13 +24,19 @@ public final class FragmentTaskDetailBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final Button btnDelete;
+  public final MaterialAutoCompleteTextView actPriority;
 
   @NonNull
-  public final Button btnPickDate;
+  public final MaterialAutoCompleteTextView actType;
 
   @NonNull
-  public final Button btnSave;
+  public final MaterialButton btnDelete;
+
+  @NonNull
+  public final MaterialButton btnPickDate;
+
+  @NonNull
+  public final MaterialButton btnSave;
 
   @NonNull
   public final CheckBox cbCompleted;
@@ -42,31 +48,27 @@ public final class FragmentTaskDetailBinding implements ViewBinding {
   public final TextInputEditText etTaskTitle;
 
   @NonNull
-  public final Spinner spinnerPriority;
-
-  @NonNull
-  public final Spinner spinnerType;
-
-  @NonNull
   public final TextView tvCourseLabel;
 
   @NonNull
   public final TextView tvSelectedDate;
 
-  private FragmentTaskDetailBinding(@NonNull ScrollView rootView, @NonNull Button btnDelete,
-      @NonNull Button btnPickDate, @NonNull Button btnSave, @NonNull CheckBox cbCompleted,
-      @NonNull TextInputEditText etDescription, @NonNull TextInputEditText etTaskTitle,
-      @NonNull Spinner spinnerPriority, @NonNull Spinner spinnerType,
-      @NonNull TextView tvCourseLabel, @NonNull TextView tvSelectedDate) {
+  private FragmentTaskDetailBinding(@NonNull ScrollView rootView,
+      @NonNull MaterialAutoCompleteTextView actPriority,
+      @NonNull MaterialAutoCompleteTextView actType, @NonNull MaterialButton btnDelete,
+      @NonNull MaterialButton btnPickDate, @NonNull MaterialButton btnSave,
+      @NonNull CheckBox cbCompleted, @NonNull TextInputEditText etDescription,
+      @NonNull TextInputEditText etTaskTitle, @NonNull TextView tvCourseLabel,
+      @NonNull TextView tvSelectedDate) {
     this.rootView = rootView;
+    this.actPriority = actPriority;
+    this.actType = actType;
     this.btnDelete = btnDelete;
     this.btnPickDate = btnPickDate;
     this.btnSave = btnSave;
     this.cbCompleted = cbCompleted;
     this.etDescription = etDescription;
     this.etTaskTitle = etTaskTitle;
-    this.spinnerPriority = spinnerPriority;
-    this.spinnerType = spinnerType;
     this.tvCourseLabel = tvCourseLabel;
     this.tvSelectedDate = tvSelectedDate;
   }
@@ -98,20 +100,32 @@ public final class FragmentTaskDetailBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.act_priority;
+      MaterialAutoCompleteTextView actPriority = ViewBindings.findChildViewById(rootView, id);
+      if (actPriority == null) {
+        break missingId;
+      }
+
+      id = R.id.act_type;
+      MaterialAutoCompleteTextView actType = ViewBindings.findChildViewById(rootView, id);
+      if (actType == null) {
+        break missingId;
+      }
+
       id = R.id.btn_delete;
-      Button btnDelete = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnDelete = ViewBindings.findChildViewById(rootView, id);
       if (btnDelete == null) {
         break missingId;
       }
 
       id = R.id.btn_pick_date;
-      Button btnPickDate = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnPickDate = ViewBindings.findChildViewById(rootView, id);
       if (btnPickDate == null) {
         break missingId;
       }
 
       id = R.id.btn_save;
-      Button btnSave = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnSave = ViewBindings.findChildViewById(rootView, id);
       if (btnSave == null) {
         break missingId;
       }
@@ -134,18 +148,6 @@ public final class FragmentTaskDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.spinner_priority;
-      Spinner spinnerPriority = ViewBindings.findChildViewById(rootView, id);
-      if (spinnerPriority == null) {
-        break missingId;
-      }
-
-      id = R.id.spinner_type;
-      Spinner spinnerType = ViewBindings.findChildViewById(rootView, id);
-      if (spinnerType == null) {
-        break missingId;
-      }
-
       id = R.id.tv_course_label;
       TextView tvCourseLabel = ViewBindings.findChildViewById(rootView, id);
       if (tvCourseLabel == null) {
@@ -158,8 +160,8 @@ public final class FragmentTaskDetailBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentTaskDetailBinding((ScrollView) rootView, btnDelete, btnPickDate, btnSave,
-          cbCompleted, etDescription, etTaskTitle, spinnerPriority, spinnerType, tvCourseLabel,
+      return new FragmentTaskDetailBinding((ScrollView) rootView, actPriority, actType, btnDelete,
+          btnPickDate, btnSave, cbCompleted, etDescription, etTaskTitle, tvCourseLabel,
           tvSelectedDate);
     }
     String missingId = rootView.getResources().getResourceName(id);

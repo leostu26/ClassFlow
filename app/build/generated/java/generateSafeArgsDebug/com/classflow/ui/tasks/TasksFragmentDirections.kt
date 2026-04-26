@@ -39,11 +39,29 @@ public class TasksFragmentDirections private constructor() {
       }
   }
 
+  private data class ActionTasksFragmentToSyllabusSetupFragment(
+    public val courseId: Long,
+    public val courseName: String,
+  ) : NavDirections {
+    public override val actionId: Int = R.id.action_tasksFragment_to_syllabusSetupFragment
+
+    public override val arguments: Bundle
+      get() {
+        val result = Bundle()
+        result.putLong("courseId", this.courseId)
+        result.putString("courseName", this.courseName)
+        return result
+      }
+  }
+
   public companion object {
     @CheckResult
     public fun actionTasksFragmentToAddTaskFragment(courseId: Long, courseName: String): NavDirections = ActionTasksFragmentToAddTaskFragment(courseId, courseName)
 
     @CheckResult
     public fun actionTasksFragmentToTaskDetailFragment(taskId: Long, courseName: String): NavDirections = ActionTasksFragmentToTaskDetailFragment(taskId, courseName)
+
+    @CheckResult
+    public fun actionTasksFragmentToSyllabusSetupFragment(courseId: Long, courseName: String): NavDirections = ActionTasksFragmentToSyllabusSetupFragment(courseId, courseName)
   }
 }

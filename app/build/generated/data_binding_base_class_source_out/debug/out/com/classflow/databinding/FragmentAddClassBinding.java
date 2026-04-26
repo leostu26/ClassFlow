@@ -4,14 +4,21 @@ package com.classflow.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -21,34 +28,31 @@ public final class FragmentAddClassBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final Button btnCancel;
+  public final MaterialAutoCompleteTextView actPlatform;
 
   @NonNull
-  public final Button btnSaveClass;
+  public final MaterialButton btnCancel;
 
   @NonNull
-  public final View color1;
+  public final MaterialButton btnRandomColor;
 
   @NonNull
-  public final View color2;
+  public final MaterialButton btnSaveClass;
 
   @NonNull
-  public final View color3;
+  public final ChipGroup cgClassMode;
 
   @NonNull
-  public final View color4;
+  public final Chip chipHybrid;
 
   @NonNull
-  public final View color5;
+  public final Chip chipInPerson;
 
   @NonNull
-  public final View color6;
+  public final Chip chipOnline;
 
   @NonNull
-  public final View color7;
-
-  @NonNull
-  public final View color8;
+  public final MaterialCardView cvColorPreview;
 
   @NonNull
   public final TextInputEditText etCourseCode;
@@ -60,33 +64,88 @@ public final class FragmentAddClassBinding implements ViewBinding {
   public final TextInputEditText etInstructor;
 
   @NonNull
+  public final TextInputEditText etMeetingLink;
+
+  @NonNull
   public final TextInputEditText etRoom;
 
   @NonNull
   public final TextInputEditText etSchedule;
 
-  private FragmentAddClassBinding(@NonNull ScrollView rootView, @NonNull Button btnCancel,
-      @NonNull Button btnSaveClass, @NonNull View color1, @NonNull View color2,
-      @NonNull View color3, @NonNull View color4, @NonNull View color5, @NonNull View color6,
-      @NonNull View color7, @NonNull View color8, @NonNull TextInputEditText etCourseCode,
-      @NonNull TextInputEditText etCourseName, @NonNull TextInputEditText etInstructor,
-      @NonNull TextInputEditText etRoom, @NonNull TextInputEditText etSchedule) {
+  @NonNull
+  public final LinearLayout llColorSwatches;
+
+  @NonNull
+  public final LinearLayout llGeneratedSection;
+
+  @NonNull
+  public final LinearLayout llGeneratedSwatchRow;
+
+  @NonNull
+  public final TextInputLayout tilMeetingLink;
+
+  @NonNull
+  public final TextInputLayout tilPlatform;
+
+  @NonNull
+  public final TextInputLayout tilRoom;
+
+  @NonNull
+  public final TextView tvColorWarning;
+
+  @NonNull
+  public final TextView tvGeneratedLabel;
+
+  @NonNull
+  public final TextView tvPreviewCode;
+
+  @NonNull
+  public final TextView tvPreviewMode;
+
+  @NonNull
+  public final TextView tvPreviewName;
+
+  private FragmentAddClassBinding(@NonNull ScrollView rootView,
+      @NonNull MaterialAutoCompleteTextView actPlatform, @NonNull MaterialButton btnCancel,
+      @NonNull MaterialButton btnRandomColor, @NonNull MaterialButton btnSaveClass,
+      @NonNull ChipGroup cgClassMode, @NonNull Chip chipHybrid, @NonNull Chip chipInPerson,
+      @NonNull Chip chipOnline, @NonNull MaterialCardView cvColorPreview,
+      @NonNull TextInputEditText etCourseCode, @NonNull TextInputEditText etCourseName,
+      @NonNull TextInputEditText etInstructor, @NonNull TextInputEditText etMeetingLink,
+      @NonNull TextInputEditText etRoom, @NonNull TextInputEditText etSchedule,
+      @NonNull LinearLayout llColorSwatches, @NonNull LinearLayout llGeneratedSection,
+      @NonNull LinearLayout llGeneratedSwatchRow, @NonNull TextInputLayout tilMeetingLink,
+      @NonNull TextInputLayout tilPlatform, @NonNull TextInputLayout tilRoom,
+      @NonNull TextView tvColorWarning, @NonNull TextView tvGeneratedLabel,
+      @NonNull TextView tvPreviewCode, @NonNull TextView tvPreviewMode,
+      @NonNull TextView tvPreviewName) {
     this.rootView = rootView;
+    this.actPlatform = actPlatform;
     this.btnCancel = btnCancel;
+    this.btnRandomColor = btnRandomColor;
     this.btnSaveClass = btnSaveClass;
-    this.color1 = color1;
-    this.color2 = color2;
-    this.color3 = color3;
-    this.color4 = color4;
-    this.color5 = color5;
-    this.color6 = color6;
-    this.color7 = color7;
-    this.color8 = color8;
+    this.cgClassMode = cgClassMode;
+    this.chipHybrid = chipHybrid;
+    this.chipInPerson = chipInPerson;
+    this.chipOnline = chipOnline;
+    this.cvColorPreview = cvColorPreview;
     this.etCourseCode = etCourseCode;
     this.etCourseName = etCourseName;
     this.etInstructor = etInstructor;
+    this.etMeetingLink = etMeetingLink;
     this.etRoom = etRoom;
     this.etSchedule = etSchedule;
+    this.llColorSwatches = llColorSwatches;
+    this.llGeneratedSection = llGeneratedSection;
+    this.llGeneratedSwatchRow = llGeneratedSwatchRow;
+    this.tilMeetingLink = tilMeetingLink;
+    this.tilPlatform = tilPlatform;
+    this.tilRoom = tilRoom;
+    this.tvColorWarning = tvColorWarning;
+    this.tvGeneratedLabel = tvGeneratedLabel;
+    this.tvPreviewCode = tvPreviewCode;
+    this.tvPreviewMode = tvPreviewMode;
+    this.tvPreviewName = tvPreviewName;
   }
 
   @Override
@@ -116,63 +175,57 @@ public final class FragmentAddClassBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.act_platform;
+      MaterialAutoCompleteTextView actPlatform = ViewBindings.findChildViewById(rootView, id);
+      if (actPlatform == null) {
+        break missingId;
+      }
+
       id = R.id.btn_cancel;
-      Button btnCancel = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnCancel = ViewBindings.findChildViewById(rootView, id);
       if (btnCancel == null) {
         break missingId;
       }
 
+      id = R.id.btn_random_color;
+      MaterialButton btnRandomColor = ViewBindings.findChildViewById(rootView, id);
+      if (btnRandomColor == null) {
+        break missingId;
+      }
+
       id = R.id.btn_save_class;
-      Button btnSaveClass = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnSaveClass = ViewBindings.findChildViewById(rootView, id);
       if (btnSaveClass == null) {
         break missingId;
       }
 
-      id = R.id.color1;
-      View color1 = ViewBindings.findChildViewById(rootView, id);
-      if (color1 == null) {
+      id = R.id.cg_class_mode;
+      ChipGroup cgClassMode = ViewBindings.findChildViewById(rootView, id);
+      if (cgClassMode == null) {
         break missingId;
       }
 
-      id = R.id.color2;
-      View color2 = ViewBindings.findChildViewById(rootView, id);
-      if (color2 == null) {
+      id = R.id.chip_hybrid;
+      Chip chipHybrid = ViewBindings.findChildViewById(rootView, id);
+      if (chipHybrid == null) {
         break missingId;
       }
 
-      id = R.id.color3;
-      View color3 = ViewBindings.findChildViewById(rootView, id);
-      if (color3 == null) {
+      id = R.id.chip_in_person;
+      Chip chipInPerson = ViewBindings.findChildViewById(rootView, id);
+      if (chipInPerson == null) {
         break missingId;
       }
 
-      id = R.id.color4;
-      View color4 = ViewBindings.findChildViewById(rootView, id);
-      if (color4 == null) {
+      id = R.id.chip_online;
+      Chip chipOnline = ViewBindings.findChildViewById(rootView, id);
+      if (chipOnline == null) {
         break missingId;
       }
 
-      id = R.id.color5;
-      View color5 = ViewBindings.findChildViewById(rootView, id);
-      if (color5 == null) {
-        break missingId;
-      }
-
-      id = R.id.color6;
-      View color6 = ViewBindings.findChildViewById(rootView, id);
-      if (color6 == null) {
-        break missingId;
-      }
-
-      id = R.id.color7;
-      View color7 = ViewBindings.findChildViewById(rootView, id);
-      if (color7 == null) {
-        break missingId;
-      }
-
-      id = R.id.color8;
-      View color8 = ViewBindings.findChildViewById(rootView, id);
-      if (color8 == null) {
+      id = R.id.cv_color_preview;
+      MaterialCardView cvColorPreview = ViewBindings.findChildViewById(rootView, id);
+      if (cvColorPreview == null) {
         break missingId;
       }
 
@@ -194,6 +247,12 @@ public final class FragmentAddClassBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.et_meeting_link;
+      TextInputEditText etMeetingLink = ViewBindings.findChildViewById(rootView, id);
+      if (etMeetingLink == null) {
+        break missingId;
+      }
+
       id = R.id.et_room;
       TextInputEditText etRoom = ViewBindings.findChildViewById(rootView, id);
       if (etRoom == null) {
@@ -206,9 +265,78 @@ public final class FragmentAddClassBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentAddClassBinding((ScrollView) rootView, btnCancel, btnSaveClass, color1,
-          color2, color3, color4, color5, color6, color7, color8, etCourseCode, etCourseName,
-          etInstructor, etRoom, etSchedule);
+      id = R.id.ll_color_swatches;
+      LinearLayout llColorSwatches = ViewBindings.findChildViewById(rootView, id);
+      if (llColorSwatches == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_generated_section;
+      LinearLayout llGeneratedSection = ViewBindings.findChildViewById(rootView, id);
+      if (llGeneratedSection == null) {
+        break missingId;
+      }
+
+      id = R.id.ll_generated_swatch_row;
+      LinearLayout llGeneratedSwatchRow = ViewBindings.findChildViewById(rootView, id);
+      if (llGeneratedSwatchRow == null) {
+        break missingId;
+      }
+
+      id = R.id.til_meeting_link;
+      TextInputLayout tilMeetingLink = ViewBindings.findChildViewById(rootView, id);
+      if (tilMeetingLink == null) {
+        break missingId;
+      }
+
+      id = R.id.til_platform;
+      TextInputLayout tilPlatform = ViewBindings.findChildViewById(rootView, id);
+      if (tilPlatform == null) {
+        break missingId;
+      }
+
+      id = R.id.til_room;
+      TextInputLayout tilRoom = ViewBindings.findChildViewById(rootView, id);
+      if (tilRoom == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_color_warning;
+      TextView tvColorWarning = ViewBindings.findChildViewById(rootView, id);
+      if (tvColorWarning == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_generated_label;
+      TextView tvGeneratedLabel = ViewBindings.findChildViewById(rootView, id);
+      if (tvGeneratedLabel == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_preview_code;
+      TextView tvPreviewCode = ViewBindings.findChildViewById(rootView, id);
+      if (tvPreviewCode == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_preview_mode;
+      TextView tvPreviewMode = ViewBindings.findChildViewById(rootView, id);
+      if (tvPreviewMode == null) {
+        break missingId;
+      }
+
+      id = R.id.tv_preview_name;
+      TextView tvPreviewName = ViewBindings.findChildViewById(rootView, id);
+      if (tvPreviewName == null) {
+        break missingId;
+      }
+
+      return new FragmentAddClassBinding((ScrollView) rootView, actPlatform, btnCancel,
+          btnRandomColor, btnSaveClass, cgClassMode, chipHybrid, chipInPerson, chipOnline,
+          cvColorPreview, etCourseCode, etCourseName, etInstructor, etMeetingLink, etRoom,
+          etSchedule, llColorSwatches, llGeneratedSection, llGeneratedSwatchRow, tilMeetingLink,
+          tilPlatform, tilRoom, tvColorWarning, tvGeneratedLabel, tvPreviewCode, tvPreviewMode,
+          tvPreviewName);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,15 +4,15 @@ package com.classflow.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ScrollView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textfield.TextInputEditText;
 import java.lang.NullPointerException;
 import java.lang.Override;
@@ -23,13 +23,19 @@ public final class FragmentAddTaskBinding implements ViewBinding {
   private final ScrollView rootView;
 
   @NonNull
-  public final Button btnCancel;
+  public final MaterialAutoCompleteTextView actPriority;
 
   @NonNull
-  public final Button btnPickDate;
+  public final MaterialAutoCompleteTextView actType;
 
   @NonNull
-  public final Button btnSaveTask;
+  public final MaterialButton btnCancel;
+
+  @NonNull
+  public final MaterialButton btnPickDate;
+
+  @NonNull
+  public final MaterialButton btnSaveTask;
 
   @NonNull
   public final TextInputEditText etTaskDescription;
@@ -38,30 +44,25 @@ public final class FragmentAddTaskBinding implements ViewBinding {
   public final TextInputEditText etTaskTitle;
 
   @NonNull
-  public final Spinner spinnerPriority;
-
-  @NonNull
-  public final Spinner spinnerType;
-
-  @NonNull
   public final TextView tvCourseLabel;
 
   @NonNull
   public final TextView tvSelectedDate;
 
-  private FragmentAddTaskBinding(@NonNull ScrollView rootView, @NonNull Button btnCancel,
-      @NonNull Button btnPickDate, @NonNull Button btnSaveTask,
+  private FragmentAddTaskBinding(@NonNull ScrollView rootView,
+      @NonNull MaterialAutoCompleteTextView actPriority,
+      @NonNull MaterialAutoCompleteTextView actType, @NonNull MaterialButton btnCancel,
+      @NonNull MaterialButton btnPickDate, @NonNull MaterialButton btnSaveTask,
       @NonNull TextInputEditText etTaskDescription, @NonNull TextInputEditText etTaskTitle,
-      @NonNull Spinner spinnerPriority, @NonNull Spinner spinnerType,
       @NonNull TextView tvCourseLabel, @NonNull TextView tvSelectedDate) {
     this.rootView = rootView;
+    this.actPriority = actPriority;
+    this.actType = actType;
     this.btnCancel = btnCancel;
     this.btnPickDate = btnPickDate;
     this.btnSaveTask = btnSaveTask;
     this.etTaskDescription = etTaskDescription;
     this.etTaskTitle = etTaskTitle;
-    this.spinnerPriority = spinnerPriority;
-    this.spinnerType = spinnerType;
     this.tvCourseLabel = tvCourseLabel;
     this.tvSelectedDate = tvSelectedDate;
   }
@@ -93,20 +94,32 @@ public final class FragmentAddTaskBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.act_priority;
+      MaterialAutoCompleteTextView actPriority = ViewBindings.findChildViewById(rootView, id);
+      if (actPriority == null) {
+        break missingId;
+      }
+
+      id = R.id.act_type;
+      MaterialAutoCompleteTextView actType = ViewBindings.findChildViewById(rootView, id);
+      if (actType == null) {
+        break missingId;
+      }
+
       id = R.id.btn_cancel;
-      Button btnCancel = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnCancel = ViewBindings.findChildViewById(rootView, id);
       if (btnCancel == null) {
         break missingId;
       }
 
       id = R.id.btn_pick_date;
-      Button btnPickDate = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnPickDate = ViewBindings.findChildViewById(rootView, id);
       if (btnPickDate == null) {
         break missingId;
       }
 
       id = R.id.btn_save_task;
-      Button btnSaveTask = ViewBindings.findChildViewById(rootView, id);
+      MaterialButton btnSaveTask = ViewBindings.findChildViewById(rootView, id);
       if (btnSaveTask == null) {
         break missingId;
       }
@@ -123,18 +136,6 @@ public final class FragmentAddTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.spinner_priority;
-      Spinner spinnerPriority = ViewBindings.findChildViewById(rootView, id);
-      if (spinnerPriority == null) {
-        break missingId;
-      }
-
-      id = R.id.spinner_type;
-      Spinner spinnerType = ViewBindings.findChildViewById(rootView, id);
-      if (spinnerType == null) {
-        break missingId;
-      }
-
       id = R.id.tv_course_label;
       TextView tvCourseLabel = ViewBindings.findChildViewById(rootView, id);
       if (tvCourseLabel == null) {
@@ -147,9 +148,8 @@ public final class FragmentAddTaskBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentAddTaskBinding((ScrollView) rootView, btnCancel, btnPickDate, btnSaveTask,
-          etTaskDescription, etTaskTitle, spinnerPriority, spinnerType, tvCourseLabel,
-          tvSelectedDate);
+      return new FragmentAddTaskBinding((ScrollView) rootView, actPriority, actType, btnCancel,
+          btnPickDate, btnSaveTask, etTaskDescription, etTaskTitle, tvCourseLabel, tvSelectedDate);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

@@ -4,6 +4,7 @@ package com.classflow.databinding;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -13,6 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
+import com.google.android.material.chip.Chip;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
@@ -22,10 +26,31 @@ public final class FragmentTasksBinding implements ViewBinding {
   private final CoordinatorLayout rootView;
 
   @NonNull
+  public final Button btnClearFilters;
+
+  @NonNull
+  public final Chip chipCompletion;
+
+  @NonNull
+  public final Chip chipDue;
+
+  @NonNull
+  public final Chip chipPriority;
+
+  @NonNull
+  public final Chip chipType;
+
+  @NonNull
+  public final TextInputEditText etSearch;
+
+  @NonNull
   public final ProgressBar progressBar;
 
   @NonNull
   public final RecyclerView rvTasks;
+
+  @NonNull
+  public final TextInputLayout tilSearch;
 
   @NonNull
   public final TextView tvCourseTitle;
@@ -36,12 +61,21 @@ public final class FragmentTasksBinding implements ViewBinding {
   @NonNull
   public final TextView tvProgress;
 
-  private FragmentTasksBinding(@NonNull CoordinatorLayout rootView,
-      @NonNull ProgressBar progressBar, @NonNull RecyclerView rvTasks,
+  private FragmentTasksBinding(@NonNull CoordinatorLayout rootView, @NonNull Button btnClearFilters,
+      @NonNull Chip chipCompletion, @NonNull Chip chipDue, @NonNull Chip chipPriority,
+      @NonNull Chip chipType, @NonNull TextInputEditText etSearch, @NonNull ProgressBar progressBar,
+      @NonNull RecyclerView rvTasks, @NonNull TextInputLayout tilSearch,
       @NonNull TextView tvCourseTitle, @NonNull TextView tvNoTasks, @NonNull TextView tvProgress) {
     this.rootView = rootView;
+    this.btnClearFilters = btnClearFilters;
+    this.chipCompletion = chipCompletion;
+    this.chipDue = chipDue;
+    this.chipPriority = chipPriority;
+    this.chipType = chipType;
+    this.etSearch = etSearch;
     this.progressBar = progressBar;
     this.rvTasks = rvTasks;
+    this.tilSearch = tilSearch;
     this.tvCourseTitle = tvCourseTitle;
     this.tvNoTasks = tvNoTasks;
     this.tvProgress = tvProgress;
@@ -74,6 +108,42 @@ public final class FragmentTasksBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_clear_filters;
+      Button btnClearFilters = ViewBindings.findChildViewById(rootView, id);
+      if (btnClearFilters == null) {
+        break missingId;
+      }
+
+      id = R.id.chip_completion;
+      Chip chipCompletion = ViewBindings.findChildViewById(rootView, id);
+      if (chipCompletion == null) {
+        break missingId;
+      }
+
+      id = R.id.chip_due;
+      Chip chipDue = ViewBindings.findChildViewById(rootView, id);
+      if (chipDue == null) {
+        break missingId;
+      }
+
+      id = R.id.chip_priority;
+      Chip chipPriority = ViewBindings.findChildViewById(rootView, id);
+      if (chipPriority == null) {
+        break missingId;
+      }
+
+      id = R.id.chip_type;
+      Chip chipType = ViewBindings.findChildViewById(rootView, id);
+      if (chipType == null) {
+        break missingId;
+      }
+
+      id = R.id.et_search;
+      TextInputEditText etSearch = ViewBindings.findChildViewById(rootView, id);
+      if (etSearch == null) {
+        break missingId;
+      }
+
       id = R.id.progress_bar;
       ProgressBar progressBar = ViewBindings.findChildViewById(rootView, id);
       if (progressBar == null) {
@@ -83,6 +153,12 @@ public final class FragmentTasksBinding implements ViewBinding {
       id = R.id.rv_tasks;
       RecyclerView rvTasks = ViewBindings.findChildViewById(rootView, id);
       if (rvTasks == null) {
+        break missingId;
+      }
+
+      id = R.id.til_search;
+      TextInputLayout tilSearch = ViewBindings.findChildViewById(rootView, id);
+      if (tilSearch == null) {
         break missingId;
       }
 
@@ -104,8 +180,9 @@ public final class FragmentTasksBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentTasksBinding((CoordinatorLayout) rootView, progressBar, rvTasks,
-          tvCourseTitle, tvNoTasks, tvProgress);
+      return new FragmentTasksBinding((CoordinatorLayout) rootView, btnClearFilters, chipCompletion,
+          chipDue, chipPriority, chipType, etSearch, progressBar, rvTasks, tilSearch, tvCourseTitle,
+          tvNoTasks, tvProgress);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

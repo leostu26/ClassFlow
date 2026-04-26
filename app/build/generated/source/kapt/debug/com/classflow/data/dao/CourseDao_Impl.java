@@ -39,7 +39,7 @@ public final class CourseDao_Impl implements CourseDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "INSERT OR REPLACE INTO `courses` (`id`,`name`,`code`,`instructor`,`color`,`schedule`,`room`) VALUES (nullif(?, 0),?,?,?,?,?,?)";
+        return "INSERT OR REPLACE INTO `courses` (`id`,`name`,`code`,`instructor`,`color`,`schedule`,`room`,`classMode`,`meetingLink`,`platform`) VALUES (nullif(?, 0),?,?,?,?,?,?,?,?,?)";
       }
 
       @Override
@@ -74,6 +74,21 @@ public final class CourseDao_Impl implements CourseDao {
           statement.bindNull(7);
         } else {
           statement.bindText(7, entity.getRoom());
+        }
+        if (entity.getClassMode() == null) {
+          statement.bindNull(8);
+        } else {
+          statement.bindText(8, entity.getClassMode());
+        }
+        if (entity.getMeetingLink() == null) {
+          statement.bindNull(9);
+        } else {
+          statement.bindText(9, entity.getMeetingLink());
+        }
+        if (entity.getPlatform() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindText(10, entity.getPlatform());
         }
       }
     };
@@ -93,7 +108,7 @@ public final class CourseDao_Impl implements CourseDao {
       @Override
       @NonNull
       protected String createQuery() {
-        return "UPDATE OR ABORT `courses` SET `id` = ?,`name` = ?,`code` = ?,`instructor` = ?,`color` = ?,`schedule` = ?,`room` = ? WHERE `id` = ?";
+        return "UPDATE OR ABORT `courses` SET `id` = ?,`name` = ?,`code` = ?,`instructor` = ?,`color` = ?,`schedule` = ?,`room` = ?,`classMode` = ?,`meetingLink` = ?,`platform` = ? WHERE `id` = ?";
       }
 
       @Override
@@ -129,7 +144,22 @@ public final class CourseDao_Impl implements CourseDao {
         } else {
           statement.bindText(7, entity.getRoom());
         }
-        statement.bindLong(8, entity.getId());
+        if (entity.getClassMode() == null) {
+          statement.bindNull(8);
+        } else {
+          statement.bindText(8, entity.getClassMode());
+        }
+        if (entity.getMeetingLink() == null) {
+          statement.bindNull(9);
+        } else {
+          statement.bindText(9, entity.getMeetingLink());
+        }
+        if (entity.getPlatform() == null) {
+          statement.bindNull(10);
+        } else {
+          statement.bindText(10, entity.getPlatform());
+        }
+        statement.bindLong(11, entity.getId());
       }
     };
   }
@@ -173,6 +203,9 @@ public final class CourseDao_Impl implements CourseDao {
         final int _columnIndexOfColor = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "color");
         final int _columnIndexOfSchedule = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "schedule");
         final int _columnIndexOfRoom = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "room");
+        final int _columnIndexOfClassMode = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "classMode");
+        final int _columnIndexOfMeetingLink = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "meetingLink");
+        final int _columnIndexOfPlatform = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "platform");
         final List<Course> _result = new ArrayList<Course>();
         while (_stmt.step()) {
           final Course _item;
@@ -214,7 +247,25 @@ public final class CourseDao_Impl implements CourseDao {
           } else {
             _tmpRoom = _stmt.getText(_columnIndexOfRoom);
           }
-          _item = new Course(_tmpId,_tmpName,_tmpCode,_tmpInstructor,_tmpColor,_tmpSchedule,_tmpRoom);
+          final String _tmpClassMode;
+          if (_stmt.isNull(_columnIndexOfClassMode)) {
+            _tmpClassMode = null;
+          } else {
+            _tmpClassMode = _stmt.getText(_columnIndexOfClassMode);
+          }
+          final String _tmpMeetingLink;
+          if (_stmt.isNull(_columnIndexOfMeetingLink)) {
+            _tmpMeetingLink = null;
+          } else {
+            _tmpMeetingLink = _stmt.getText(_columnIndexOfMeetingLink);
+          }
+          final String _tmpPlatform;
+          if (_stmt.isNull(_columnIndexOfPlatform)) {
+            _tmpPlatform = null;
+          } else {
+            _tmpPlatform = _stmt.getText(_columnIndexOfPlatform);
+          }
+          _item = new Course(_tmpId,_tmpName,_tmpCode,_tmpInstructor,_tmpColor,_tmpSchedule,_tmpRoom,_tmpClassMode,_tmpMeetingLink,_tmpPlatform);
           _result.add(_item);
         }
         return _result;
@@ -239,6 +290,9 @@ public final class CourseDao_Impl implements CourseDao {
         final int _columnIndexOfColor = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "color");
         final int _columnIndexOfSchedule = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "schedule");
         final int _columnIndexOfRoom = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "room");
+        final int _columnIndexOfClassMode = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "classMode");
+        final int _columnIndexOfMeetingLink = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "meetingLink");
+        final int _columnIndexOfPlatform = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "platform");
         final Course _result;
         if (_stmt.step()) {
           final long _tmpId;
@@ -279,7 +333,25 @@ public final class CourseDao_Impl implements CourseDao {
           } else {
             _tmpRoom = _stmt.getText(_columnIndexOfRoom);
           }
-          _result = new Course(_tmpId,_tmpName,_tmpCode,_tmpInstructor,_tmpColor,_tmpSchedule,_tmpRoom);
+          final String _tmpClassMode;
+          if (_stmt.isNull(_columnIndexOfClassMode)) {
+            _tmpClassMode = null;
+          } else {
+            _tmpClassMode = _stmt.getText(_columnIndexOfClassMode);
+          }
+          final String _tmpMeetingLink;
+          if (_stmt.isNull(_columnIndexOfMeetingLink)) {
+            _tmpMeetingLink = null;
+          } else {
+            _tmpMeetingLink = _stmt.getText(_columnIndexOfMeetingLink);
+          }
+          final String _tmpPlatform;
+          if (_stmt.isNull(_columnIndexOfPlatform)) {
+            _tmpPlatform = null;
+          } else {
+            _tmpPlatform = _stmt.getText(_columnIndexOfPlatform);
+          }
+          _result = new Course(_tmpId,_tmpName,_tmpCode,_tmpInstructor,_tmpColor,_tmpSchedule,_tmpRoom,_tmpClassMode,_tmpMeetingLink,_tmpPlatform);
         } else {
           _result = null;
         }
@@ -313,6 +385,105 @@ public final class CourseDao_Impl implements CourseDao {
         _stmt.close();
       }
     });
+  }
+
+  @Override
+  public Object getAllCoursesOnce(final Continuation<? super List<Course>> $completion) {
+    final String _sql = "SELECT * FROM courses ORDER BY name ASC";
+    return DBUtil.performSuspending(__db, true, false, (_connection) -> {
+      final SQLiteStatement _stmt = _connection.prepare(_sql);
+      try {
+        final int _columnIndexOfId = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "id");
+        final int _columnIndexOfName = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "name");
+        final int _columnIndexOfCode = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "code");
+        final int _columnIndexOfInstructor = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "instructor");
+        final int _columnIndexOfColor = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "color");
+        final int _columnIndexOfSchedule = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "schedule");
+        final int _columnIndexOfRoom = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "room");
+        final int _columnIndexOfClassMode = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "classMode");
+        final int _columnIndexOfMeetingLink = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "meetingLink");
+        final int _columnIndexOfPlatform = SQLiteStatementUtil.getColumnIndexOrThrow(_stmt, "platform");
+        final List<Course> _result = new ArrayList<Course>();
+        while (_stmt.step()) {
+          final Course _item;
+          final long _tmpId;
+          _tmpId = _stmt.getLong(_columnIndexOfId);
+          final String _tmpName;
+          if (_stmt.isNull(_columnIndexOfName)) {
+            _tmpName = null;
+          } else {
+            _tmpName = _stmt.getText(_columnIndexOfName);
+          }
+          final String _tmpCode;
+          if (_stmt.isNull(_columnIndexOfCode)) {
+            _tmpCode = null;
+          } else {
+            _tmpCode = _stmt.getText(_columnIndexOfCode);
+          }
+          final String _tmpInstructor;
+          if (_stmt.isNull(_columnIndexOfInstructor)) {
+            _tmpInstructor = null;
+          } else {
+            _tmpInstructor = _stmt.getText(_columnIndexOfInstructor);
+          }
+          final String _tmpColor;
+          if (_stmt.isNull(_columnIndexOfColor)) {
+            _tmpColor = null;
+          } else {
+            _tmpColor = _stmt.getText(_columnIndexOfColor);
+          }
+          final String _tmpSchedule;
+          if (_stmt.isNull(_columnIndexOfSchedule)) {
+            _tmpSchedule = null;
+          } else {
+            _tmpSchedule = _stmt.getText(_columnIndexOfSchedule);
+          }
+          final String _tmpRoom;
+          if (_stmt.isNull(_columnIndexOfRoom)) {
+            _tmpRoom = null;
+          } else {
+            _tmpRoom = _stmt.getText(_columnIndexOfRoom);
+          }
+          final String _tmpClassMode;
+          if (_stmt.isNull(_columnIndexOfClassMode)) {
+            _tmpClassMode = null;
+          } else {
+            _tmpClassMode = _stmt.getText(_columnIndexOfClassMode);
+          }
+          final String _tmpMeetingLink;
+          if (_stmt.isNull(_columnIndexOfMeetingLink)) {
+            _tmpMeetingLink = null;
+          } else {
+            _tmpMeetingLink = _stmt.getText(_columnIndexOfMeetingLink);
+          }
+          final String _tmpPlatform;
+          if (_stmt.isNull(_columnIndexOfPlatform)) {
+            _tmpPlatform = null;
+          } else {
+            _tmpPlatform = _stmt.getText(_columnIndexOfPlatform);
+          }
+          _item = new Course(_tmpId,_tmpName,_tmpCode,_tmpInstructor,_tmpColor,_tmpSchedule,_tmpRoom,_tmpClassMode,_tmpMeetingLink,_tmpPlatform);
+          _result.add(_item);
+        }
+        return _result;
+      } finally {
+        _stmt.close();
+      }
+    }, $completion);
+  }
+
+  @Override
+  public Object deleteAllCourses(final Continuation<? super Unit> $completion) {
+    final String _sql = "DELETE FROM courses";
+    return DBUtil.performSuspending(__db, false, true, (_connection) -> {
+      final SQLiteStatement _stmt = _connection.prepare(_sql);
+      try {
+        _stmt.step();
+        return Unit.INSTANCE;
+      } finally {
+        _stmt.close();
+      }
+    }, $completion);
   }
 
   @NonNull

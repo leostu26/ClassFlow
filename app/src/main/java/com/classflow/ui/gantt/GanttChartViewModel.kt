@@ -5,12 +5,15 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.classflow.data.ClassFlowDatabase
 import com.classflow.data.model.Priority
 import com.classflow.data.model.TaskType
 import com.classflow.data.model.TaskWithCourseInfo
 import com.classflow.data.repository.TaskRepository
+import com.classflow.notification.ReminderScheduler
 import java.util.Calendar
+import kotlinx.coroutines.launch
 
 enum class ViewMode { ALL_TASKS, BY_CLASS }
 
@@ -110,6 +113,17 @@ class GanttChartViewModel(application: Application) : AndroidViewModel(applicati
         _windowStart.value = todayMidnight()
     }
 
+    // TODO: read weekStartDay from SettingsRepository to align the 14-day window header to Sunday or Monday
+
+    fun setTaskCompleted(taskId: Long, completed: Boolean) = viewModelScope.launch {
+        repository.setCompleted(taskId, completed)
+        if (completed) {
+            ReminderScheduler.cancelTaskReminder(getApplication(), taskId)
+        } else {
+            ReminderScheduler.scheduleTaskReminderById(getApplication(), taskId)
+        }
+    }
+
     fun setViewMode(mode: ViewMode) {
         if (_viewMode.value != mode) _viewMode.value = mode
     }
@@ -129,6 +143,12 @@ class GanttChartViewModel(application: Application) : AndroidViewModel(applicati
             }
             TaskType.EXAM -> when (task.priority) {
                 Priority.HIGH -> 7L; Priority.MEDIUM -> 5L; Priority.LOW -> 3L
+            }
+            TaskType.DISCUSSION -> when (task.priority) {
+                Priority.HIGH -> 3L; Priority.MEDIUM -> 2L; Priority.LOW -> 1L
+            }
+            TaskType.RESPONSES -> when (task.priority) {
+                Priority.HIGH -> 2L; Priority.MEDIUM -> 1L; Priority.LOW -> 1L
             }
             TaskType.OTHER -> when (task.priority) {
                 Priority.HIGH -> 4L; Priority.MEDIUM -> 2L; Priority.LOW -> 1L

@@ -2,14 +2,24 @@ package com.classflow.ui.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.classflow.R
+import com.classflow.data.model.TaskWithCourseName
 import com.classflow.databinding.FragmentHomeBinding
+import com.classflow.util.TaskSwipeCallback
+import com.google.android.material.snackbar.Snackbar
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -34,6 +44,7 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setupToolbarMenu()
         setupGreeting()
         setupRecyclerViews()
         observeViewModel()
@@ -42,9 +53,38 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_classListFragment)
         }
 
+        binding.cardSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchTasksFragment)
+        }
+
         binding.btnViewAllTasks.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_classListFragment)
         }
+
+        binding.btnSeeAllToday.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_classListFragment)
+        }
+
+        binding.btnSeeAllFuture.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_classListFragment)
+        }
+    }
+
+    private fun setupToolbarMenu() {
+        requireActivity().addMenuProvider(object : MenuProvider {
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_home, menu)
+            }
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    R.id.action_settings -> {
+                        findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun setupGreeting() {
@@ -59,7 +99,7 @@ class HomeFragment : Fragment() {
             .format(Date())
     }
 
-    private fun navigateToDetail(item: com.classflow.data.model.TaskWithCourseName) {
+    private fun navigateToDetail(item: TaskWithCourseName) {
         val action = HomeFragmentDirections
             .actionHomeFragmentToTaskDetailFragment(
                 taskId = item.taskId,
@@ -86,6 +126,38 @@ class HomeFragment : Fragment() {
             adapter = futureAdapter
             layoutManager = LinearLayoutManager(requireContext())
         }
+
+        attachSwipeActions()
+    }
+
+    private fun attachSwipeActions() {
+        fun attach(rv: RecyclerView, getItem: (Int) -> TaskWithCourseName?) {
+            val callback = TaskSwipeCallback(
+                onSwipeLeft = { pos ->
+                    val item = getItem(pos)
+                    if (item != null) {
+                        if (item.isCompleted) {
+                            Snackbar.make(binding.root, "Already marked complete", Snackbar.LENGTH_SHORT).show()
+                            rv.adapter?.notifyItemChanged(pos)
+                        } else {
+                            viewModel.setTaskCompleted(item.taskId, true)
+                            Snackbar.make(binding.root, "Task marked complete", Snackbar.LENGTH_LONG)
+                                .setAction("Undo") { viewModel.setTaskCompleted(item.taskId, false) }
+                                .show()
+                        }
+                    }
+                },
+                onSwipeRight = { pos ->
+                    val item = getItem(pos)
+                    if (item != null) navigateToDetail(item)
+                }
+            )
+            ItemTouchHelper(callback).attachToRecyclerView(rv)
+        }
+
+        attach(binding.rvDueToday) { pos -> todayAdapter.currentList.getOrNull(pos) }
+        attach(binding.rvUpcomingTasks) { pos -> weekAdapter.currentList.getOrNull(pos) }
+        attach(binding.rvFutureTasks) { pos -> futureAdapter.currentList.getOrNull(pos) }
     }
 
     private fun observeViewModel() {
@@ -98,7 +170,8 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.tasksDueToday.observe(viewLifecycleOwner) { tasks ->
-            todayAdapter.submitList(tasks)
+            todayAdapter.submitList(tasks.take(3))
+            binding.btnSeeAllToday.visibility = if (tasks.size > 3) View.VISIBLE else View.GONE
             if (tasks.isEmpty()) {
                 binding.tvNoToday.visibility = View.VISIBLE
                 binding.rvDueToday.visibility = View.GONE
@@ -109,7 +182,8 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.tasksDueThisWeek.observe(viewLifecycleOwner) { tasks ->
-            weekAdapter.submitList(tasks)
+            weekAdapter.submitList(tasks.take(3))
+            binding.btnViewAllTasks.visibility = if (tasks.size > 3) View.VISIBLE else View.GONE
             if (tasks.isEmpty()) {
                 binding.tvNoWeek.visibility = View.VISIBLE
                 binding.rvUpcomingTasks.visibility = View.GONE
@@ -120,7 +194,8 @@ class HomeFragment : Fragment() {
         }
 
         viewModel.tasksFuture.observe(viewLifecycleOwner) { tasks ->
-            futureAdapter.submitList(tasks)
+            futureAdapter.submitList(tasks.take(2))
+            binding.btnSeeAllFuture.visibility = if (tasks.size > 2) View.VISIBLE else View.GONE
             if (tasks.isEmpty()) {
                 binding.tvNoFuture.visibility = View.VISIBLE
                 binding.rvFutureTasks.visibility = View.GONE

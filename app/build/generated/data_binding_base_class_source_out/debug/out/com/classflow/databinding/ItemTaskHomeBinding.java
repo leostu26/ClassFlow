@@ -26,6 +26,9 @@ public final class ItemTaskHomeBinding implements ViewBinding {
   public final TextView tvDueDate;
 
   @NonNull
+  public final TextView tvPriorityChip;
+
+  @NonNull
   public final TextView tvTaskTitle;
 
   @NonNull
@@ -35,11 +38,12 @@ public final class ItemTaskHomeBinding implements ViewBinding {
   public final View viewPriority;
 
   private ItemTaskHomeBinding(@NonNull MaterialCardView rootView, @NonNull TextView tvCourseName,
-      @NonNull TextView tvDueDate, @NonNull TextView tvTaskTitle, @NonNull TextView tvTaskType,
-      @NonNull View viewPriority) {
+      @NonNull TextView tvDueDate, @NonNull TextView tvPriorityChip, @NonNull TextView tvTaskTitle,
+      @NonNull TextView tvTaskType, @NonNull View viewPriority) {
     this.rootView = rootView;
     this.tvCourseName = tvCourseName;
     this.tvDueDate = tvDueDate;
+    this.tvPriorityChip = tvPriorityChip;
     this.tvTaskTitle = tvTaskTitle;
     this.tvTaskType = tvTaskType;
     this.viewPriority = viewPriority;
@@ -84,6 +88,12 @@ public final class ItemTaskHomeBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.tv_priority_chip;
+      TextView tvPriorityChip = ViewBindings.findChildViewById(rootView, id);
+      if (tvPriorityChip == null) {
+        break missingId;
+      }
+
       id = R.id.tv_task_title;
       TextView tvTaskTitle = ViewBindings.findChildViewById(rootView, id);
       if (tvTaskTitle == null) {
@@ -103,7 +113,7 @@ public final class ItemTaskHomeBinding implements ViewBinding {
       }
 
       return new ItemTaskHomeBinding((MaterialCardView) rootView, tvCourseName, tvDueDate,
-          tvTaskTitle, tvTaskType, viewPriority);
+          tvPriorityChip, tvTaskTitle, tvTaskType, viewPriority);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

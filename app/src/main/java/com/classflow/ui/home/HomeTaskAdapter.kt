@@ -1,5 +1,6 @@
 package com.classflow.ui.home
 
+import android.graphics.Color
 import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,10 +9,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.classflow.R
-import com.classflow.data.model.Priority
 import com.classflow.data.model.TaskWithCourseName
 import com.classflow.databinding.ItemTaskHomeBinding
 import com.classflow.util.DateUtils
+import com.classflow.util.TaskColorUtils
 
 class HomeTaskAdapter(
     private val highlightDateRed: Boolean = false,
@@ -33,31 +34,31 @@ class HomeTaskAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: TaskWithCourseName) {
+            val ctx = binding.root.context
+
             binding.tvTaskTitle.text = item.title
             binding.tvDueDate.text = DateUtils.formatDate(item.dueDate)
             binding.tvCourseName.text = item.courseName
             binding.tvTaskType.text = item.type.name.lowercase()
                 .replaceFirstChar { it.uppercase() }
 
-            val priorityColor = when (item.priority) {
-                Priority.HIGH -> R.color.priority_high
-                Priority.MEDIUM -> R.color.priority_medium
-                Priority.LOW -> R.color.priority_low
-            }
-            binding.viewPriority.setBackgroundColor(
-                ContextCompat.getColor(binding.root.context, priorityColor)
-            )
+            // Left bar = class color
+            binding.viewPriority.setBackgroundColor(TaskColorUtils.safeColor(item.courseColor))
 
-            if (highlightDateRed || (!item.isCompleted && DateUtils.isOverdue(item.dueDate))) {
-                binding.tvDueDate.setTextColor(
-                    ContextCompat.getColor(binding.root.context, R.color.overdue)
-                )
+            // Priority chip = priority color
+            binding.tvPriorityChip.text = item.priority.name.lowercase()
+                .replaceFirstChar { it.uppercase() }
+            binding.tvPriorityChip.setTextColor(TaskColorUtils.priorityColorInt(item.priority, ctx))
+
+            // Overdue due date
+            val isOverdue = !item.isCompleted && DateUtils.isOverdue(item.dueDate)
+            if (highlightDateRed || isOverdue) {
+                binding.tvDueDate.setTextColor(ContextCompat.getColor(ctx, R.color.overdue))
             } else {
-                binding.tvDueDate.setTextColor(
-                    ContextCompat.getColor(binding.root.context, R.color.text_secondary)
-                )
+                binding.tvDueDate.setTextColor(ContextCompat.getColor(ctx, R.color.text_secondary))
             }
 
+            // Completed strikethrough
             if (item.isCompleted) {
                 binding.tvTaskTitle.paintFlags =
                     binding.tvTaskTitle.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

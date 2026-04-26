@@ -25,10 +25,16 @@
     <!-- Bottom Nav -->
     <color name="bottom_nav_selected">#3D5AFE</color>
     <color name="bottom_nav_unselected">#9CA3AF</color>
+    <!-- Error -->
+    <color name="error">#D32F2F</color>
+
     <!-- Cancel / Danger Button -->
     <color name="cancel_bg">#FFEBEE</color>
     <color name="cancel_text">#C62828</color>
 
     <!-- Splash -->
     <color name="splash_bg">#3D2DB0</color>
+
+    <!-- Priority chip background (light mode) -->
+    <color name="priority_chip_bg">#F3F4F6</color>
 </resources>

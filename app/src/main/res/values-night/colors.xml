@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#121218</color>
+    <color name="surface">#1E1E2E</color>
+    <color name="text_primary">#E8E8F4</color>
+    <color name="text_secondary">#9CA3AF</color>
+    <color name="primary">#7C83FF</color>
+    <color name="primary_dark">#5C63D8</color>
+    <color name="primary_light">#A8ADFF</color>
+    <color name="error">#FF5252</color>
+    <color name="bottom_nav_selected">#7C83FF</color>
+    <color name="cancel_bg">#3E2323</color>
+    <color name="cancel_text">#FF7070</color>
+
+    <!-- Priority colors (brighter for dark backgrounds) -->
+    <color name="priority_high">#F87171</color>
+    <color name="priority_medium">#FBBF24</color>
+    <color name="priority_low">#34D399</color>
+    <color name="overdue">#F87171</color>
+    <color name="completed">#9CA3AF</color>
+
+    <!-- Priority chip background (dark mode) -->
+    <color name="priority_chip_bg">#2A2A3E</color>
+</resources>

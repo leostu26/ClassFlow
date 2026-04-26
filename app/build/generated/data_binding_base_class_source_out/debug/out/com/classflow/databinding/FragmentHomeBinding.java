@@ -6,27 +6,37 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
 import androidx.viewbinding.ViewBindings;
 import com.classflow.R;
+import com.google.android.material.card.MaterialCardView;
 import java.lang.NullPointerException;
 import java.lang.Override;
 import java.lang.String;
 
 public final class FragmentHomeBinding implements ViewBinding {
   @NonNull
-  private final ScrollView rootView;
+  private final NestedScrollView rootView;
+
+  @NonNull
+  public final Button btnSeeAllFuture;
+
+  @NonNull
+  public final Button btnSeeAllToday;
 
   @NonNull
   public final Button btnViewAllTasks;
 
   @NonNull
   public final LinearLayout btnViewClasses;
+
+  @NonNull
+  public final MaterialCardView cardSearch;
 
   @NonNull
   public final RecyclerView rvDueToday;
@@ -58,15 +68,19 @@ public final class FragmentHomeBinding implements ViewBinding {
   @NonNull
   public final TextView tvPendingCount;
 
-  private FragmentHomeBinding(@NonNull ScrollView rootView, @NonNull Button btnViewAllTasks,
-      @NonNull LinearLayout btnViewClasses, @NonNull RecyclerView rvDueToday,
-      @NonNull RecyclerView rvFutureTasks, @NonNull RecyclerView rvUpcomingTasks,
-      @NonNull TextView tvCourseCount, @NonNull TextView tvDate, @NonNull TextView tvGreeting,
-      @NonNull TextView tvNoFuture, @NonNull TextView tvNoToday, @NonNull TextView tvNoWeek,
-      @NonNull TextView tvPendingCount) {
+  private FragmentHomeBinding(@NonNull NestedScrollView rootView, @NonNull Button btnSeeAllFuture,
+      @NonNull Button btnSeeAllToday, @NonNull Button btnViewAllTasks,
+      @NonNull LinearLayout btnViewClasses, @NonNull MaterialCardView cardSearch,
+      @NonNull RecyclerView rvDueToday, @NonNull RecyclerView rvFutureTasks,
+      @NonNull RecyclerView rvUpcomingTasks, @NonNull TextView tvCourseCount,
+      @NonNull TextView tvDate, @NonNull TextView tvGreeting, @NonNull TextView tvNoFuture,
+      @NonNull TextView tvNoToday, @NonNull TextView tvNoWeek, @NonNull TextView tvPendingCount) {
     this.rootView = rootView;
+    this.btnSeeAllFuture = btnSeeAllFuture;
+    this.btnSeeAllToday = btnSeeAllToday;
     this.btnViewAllTasks = btnViewAllTasks;
     this.btnViewClasses = btnViewClasses;
+    this.cardSearch = cardSearch;
     this.rvDueToday = rvDueToday;
     this.rvFutureTasks = rvFutureTasks;
     this.rvUpcomingTasks = rvUpcomingTasks;
@@ -81,7 +95,7 @@ public final class FragmentHomeBinding implements ViewBinding {
 
   @Override
   @NonNull
-  public ScrollView getRoot() {
+  public NestedScrollView getRoot() {
     return rootView;
   }
 
@@ -106,6 +120,18 @@ public final class FragmentHomeBinding implements ViewBinding {
     // This is done to optimize the compiled bytecode for size and performance.
     int id;
     missingId: {
+      id = R.id.btn_see_all_future;
+      Button btnSeeAllFuture = ViewBindings.findChildViewById(rootView, id);
+      if (btnSeeAllFuture == null) {
+        break missingId;
+      }
+
+      id = R.id.btn_see_all_today;
+      Button btnSeeAllToday = ViewBindings.findChildViewById(rootView, id);
+      if (btnSeeAllToday == null) {
+        break missingId;
+      }
+
       id = R.id.btn_view_all_tasks;
       Button btnViewAllTasks = ViewBindings.findChildViewById(rootView, id);
       if (btnViewAllTasks == null) {
@@ -115,6 +141,12 @@ public final class FragmentHomeBinding implements ViewBinding {
       id = R.id.btn_view_classes;
       LinearLayout btnViewClasses = ViewBindings.findChildViewById(rootView, id);
       if (btnViewClasses == null) {
+        break missingId;
+      }
+
+      id = R.id.card_search;
+      MaterialCardView cardSearch = ViewBindings.findChildViewById(rootView, id);
+      if (cardSearch == null) {
         break missingId;
       }
 
@@ -178,9 +210,9 @@ public final class FragmentHomeBinding implements ViewBinding {
         break missingId;
       }
 
-      return new FragmentHomeBinding((ScrollView) rootView, btnViewAllTasks, btnViewClasses,
-          rvDueToday, rvFutureTasks, rvUpcomingTasks, tvCourseCount, tvDate, tvGreeting, tvNoFuture,
-          tvNoToday, tvNoWeek, tvPendingCount);
+      return new FragmentHomeBinding((NestedScrollView) rootView, btnSeeAllFuture, btnSeeAllToday,
+          btnViewAllTasks, btnViewClasses, cardSearch, rvDueToday, rvFutureTasks, rvUpcomingTasks,
+          tvCourseCount, tvDate, tvGreeting, tvNoFuture, tvNoToday, tvNoWeek, tvPendingCount);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

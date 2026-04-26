@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_homeFragment_to_taskDetailFragment"
             app:destination="@id/taskDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchTasksFragment"
+            app:destination="@id/searchTasksFragment" />
     </fragment>
 
     <fragment
@@ -54,6 +60,9 @@
         <action
             android:id="@+id/action_tasksFragment_to_taskDetailFragment"
             app:destination="@id/taskDetailFragment" />
+        <action
+            android:id="@+id/action_tasksFragment_to_syllabusSetupFragment"
+            app:destination="@id/syllabusSetupFragment" />
     </fragment>
 
     <fragment
@@ -83,12 +92,69 @@
     </fragment>
 
     <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.classflow.ui.settings.SettingsFragment"
+        android:label="Settings"
+        tools:layout="@layout/fragment_settings">
+        <action
+            android:id="@+id/action_settingsFragment_to_devToolsFragment"
+            app:destination="@id/devToolsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/devToolsFragment"
+        android:name="com.classflow.ui.settings.DevToolsFragment"
+        android:label="Developer Tools"
+        tools:layout="@layout/fragment_dev_tools" />
+
+    <fragment
+        android:id="@+id/syllabusSetupFragment"
+        android:name="com.classflow.ui.syllabus.SyllabusSetupFragment"
+        android:label="Syllabus Task Setup"
+        tools:layout="@layout/fragment_syllabus_setup">
+        <argument
+            android:name="courseId"
+            app:argType="long" />
+        <argument
+            android:name="courseName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_syllabusSetupFragment_to_syllabusReviewFragment"
+            app:destination="@id/syllabusReviewFragment" />
+        <action
+            android:id="@+id/action_syllabusSetupFragment_to_moduleTemplateFragment"
+            app:destination="@id/moduleTemplateFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/moduleTemplateFragment"
+        android:name="com.classflow.ui.syllabus.ModuleTemplateFragment"
+        android:label="Module Builder"
+        tools:layout="@layout/fragment_module_template" />
+
+    <fragment
+        android:id="@+id/syllabusReviewFragment"
+        android:name="com.classflow.ui.syllabus.SyllabusReviewFragment"
+        android:label="Review Syllabus Tasks"
+        tools:layout="@layout/fragment_syllabus_review" />
+
+    <fragment
         android:id="@+id/ganttChartFragment"
         android:name="com.classflow.ui.timeline.TimelineContainerFragment"
         android:label="Timeline"
         tools:layout="@layout/fragment_timeline_container">
         <action
             android:id="@+id/action_ganttChartFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/searchTasksFragment"
+        android:name="com.classflow.ui.search.SearchTasksFragment"
+        android:label="Search Tasks"
+        tools:layout="@layout/fragment_search_tasks">
+        <action
+            android:id="@+id/action_searchTasksFragment_to_taskDetailFragment"
             app:destination="@id/taskDetailFragment" />
     </fragment>
 

@@ -28,4 +28,4 @@ data class Task(
 )
 
 enum class Priority { LOW, MEDIUM, HIGH }
-enum class TaskType { ASSIGNMENT, QUIZ, EXAM, PROJECT, OTHER }
+enum class TaskType { ASSIGNMENT, DISCUSSION, RESPONSES, QUIZ, EXAM, PROJECT, OTHER }

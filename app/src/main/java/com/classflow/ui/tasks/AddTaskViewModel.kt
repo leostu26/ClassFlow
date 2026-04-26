@@ -8,6 +8,7 @@ import com.classflow.data.model.Priority
 import com.classflow.data.model.Task
 import com.classflow.data.model.TaskType
 import com.classflow.data.repository.TaskRepository
+import com.classflow.notification.ReminderScheduler
 import kotlinx.coroutines.launch
 
 class AddTaskViewModel(application: Application) : AndroidViewModel(application) {
@@ -21,6 +22,7 @@ class AddTaskViewModel(application: Application) : AndroidViewModel(application)
 
     fun saveTask(
         courseId: Long,
+        courseName: String,
         title: String,
         description: String,
         dueDate: Long,
@@ -35,6 +37,7 @@ class AddTaskViewModel(application: Application) : AndroidViewModel(application)
             priority = priority,
             type = type
         )
-        repository.insert(task)
+        val id = repository.insert(task)
+        ReminderScheduler.scheduleTaskReminder(getApplication(), task.copy(id = id), courseName)
     }
 }

@@ -14,6 +14,7 @@ import com.classflow.data.model.Priority
 import com.classflow.databinding.ItemGanttAllTaskRowBinding
 import com.classflow.databinding.ItemGanttHeaderBinding
 import com.classflow.databinding.ItemGanttTaskRowBinding
+import com.classflow.util.TaskColorUtils
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -78,17 +79,6 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
                 setColor(barColor)
             }
         }
-
-        private fun safeColor(hex: String, fallback: String = "#4A90D9"): Int =
-            try { Color.parseColor(hex) } catch (e: Exception) { Color.parseColor(fallback) }
-
-        private fun priorityColor(priority: Priority): Int = Color.parseColor(
-            when (priority) {
-                Priority.HIGH -> "#EF4444"
-                Priority.MEDIUM -> "#F59E0B"
-                Priority.LOW -> "#10B981"
-            }
-        )
     }
 
     override fun getItemViewType(position: Int) = when (getItem(position)) {
@@ -128,7 +118,7 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
             else ""
             b.colorDot.background = GradientDrawable().apply {
                 shape = GradientDrawable.OVAL
-                setColor(safeColor(item.courseColor))
+                setColor(TaskColorUtils.safeColor(item.courseColor))
             }
         }
     }
@@ -142,6 +132,7 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
 
         fun bind(item: GanttListItem.TaskRow) {
             val task = item.task
+            val ctx = b.root.context
             val now = System.currentTimeMillis()
             val isOverdue = !task.isCompleted && task.dueDate > 0 && task.dueDate < now
 
@@ -149,10 +140,13 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
             b.tvTaskTitle.paintFlags = strikeIf(task.isCompleted, b.tvTaskTitle.paintFlags)
 
             b.tvDueDate.text = if (task.dueDate > 0) dateFmt.format(Date(task.dueDate)) else "—"
-            b.tvDueDate.setTextColor(if (isOverdue) Color.parseColor("#EF4444") else Color.parseColor("#6B7280"))
+            b.tvDueDate.setTextColor(
+                if (isOverdue) TaskColorUtils.safeColor("#EF4444")
+                else Color.parseColor("#6B7280")
+            )
 
             b.tvPriority.text = task.priority.label()
-            b.tvPriority.setTextColor(priorityColor(task.priority))
+            b.tvPriority.setTextColor(TaskColorUtils.priorityColorInt(task.priority, ctx))
 
             b.tvType.text = task.type.label()
 
@@ -169,7 +163,7 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
             b.root.strokeColor = if (isOverdue) Color.parseColor("#EF4444") else Color.TRANSPARENT
             b.root.strokeWidth = if (isOverdue) strokePx else 0
 
-            val barColor = barColor(task.isCompleted, isOverdue, task.courseColor)
+            val barColor = TaskColorUtils.ganttBarColor(task.isCompleted, isOverdue, task.courseColor)
             applyBar(b.spacerStart, b.barView, b.spacerEnd,
                 item.startDate, task.dueDate, item.windowStart, item.windowEnd, barColor)
         }
@@ -184,13 +178,14 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
 
         fun bind(item: GanttListItem.AllTaskRow) {
             val task = item.task
+            val ctx = b.root.context
             val now = System.currentTimeMillis()
             val isOverdue = !task.isCompleted && task.dueDate > 0 && task.dueDate < now
 
-            // Color dot (course color)
+            // Class color dot
             b.colorDot.background = GradientDrawable().apply {
                 shape = GradientDrawable.OVAL
-                setColor(safeColor(task.courseColor))
+                setColor(TaskColorUtils.safeColor(task.courseColor))
             }
 
             // Title
@@ -199,28 +194,29 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
 
             // Due date
             b.tvDueDate.text = if (task.dueDate > 0) dateFmt.format(Date(task.dueDate)) else "—"
-            b.tvDueDate.setTextColor(if (isOverdue) Color.parseColor("#EF4444") else Color.parseColor("#6B7280"))
+            b.tvDueDate.setTextColor(
+                if (isOverdue) TaskColorUtils.safeColor("#EF4444")
+                else Color.parseColor("#6B7280")
+            )
 
             // Class name
             b.tvClassName.text = task.courseName
 
-            // Priority chip
+            // Priority chip = priority color
             b.tvPriorityChip.text = task.priority.label()
-            b.tvPriorityChip.setTextColor(priorityColor(task.priority))
+            b.tvPriorityChip.setTextColor(TaskColorUtils.priorityColorInt(task.priority, ctx))
 
             // Type chip
             b.tvTypeChip.text = task.type.label()
 
             // Days chip
             b.tvDaysChip.text = item.daysLabel
-            b.tvDaysChip.setTextColor(
-                when {
-                    task.isCompleted -> Color.parseColor("#10B981")
-                    isOverdue -> Color.parseColor("#EF4444")
-                    item.daysLabel == "Due today" -> Color.parseColor("#F59E0B")
-                    else -> Color.parseColor("#6B7280")
-                }
-            )
+            b.tvDaysChip.setTextColor(when {
+                task.isCompleted -> Color.parseColor("#10B981")
+                isOverdue -> Color.parseColor("#EF4444")
+                item.daysLabel == "Due today" -> Color.parseColor("#F59E0B")
+                else -> Color.parseColor("#6B7280")
+            })
 
             // Card alpha + overdue stroke
             b.root.alpha = if (task.isCompleted) 0.55f else 1.0f
@@ -228,8 +224,8 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
             b.root.strokeColor = if (isOverdue) Color.parseColor("#EF4444") else Color.TRANSPARENT
             b.root.strokeWidth = if (isOverdue) strokePx else 0
 
-            // Bar
-            val barColor = barColor(task.isCompleted, isOverdue, task.courseColor)
+            // Gantt bar = class color (gray if done, red if overdue)
+            val barColor = TaskColorUtils.ganttBarColor(task.isCompleted, isOverdue, task.courseColor)
             applyBar(b.spacerStart, b.barView, b.spacerEnd,
                 item.startDate, task.dueDate, item.windowStart, item.windowEnd, barColor)
         }
@@ -240,12 +236,6 @@ class GanttAdapter : ListAdapter<GanttListItem, RecyclerView.ViewHolder>(DIFF) {
     private fun strikeIf(strike: Boolean, flags: Int): Int =
         if (strike) flags or Paint.STRIKE_THRU_TEXT_FLAG
         else flags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
-
-    private fun barColor(completed: Boolean, overdue: Boolean, courseColor: String): Int = when {
-        completed -> Color.parseColor("#9CA3AF")
-        overdue -> Color.parseColor("#EF4444")
-        else -> safeColor(courseColor)
-    }
 
     private fun Priority.label() = name.lowercase().replaceFirstChar { it.uppercase() }
     private fun com.classflow.data.model.TaskType.label() =

@@ -1,50 +1,122 @@
 [
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\item_task_home.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_task_home.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_gantt_all_task_row.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_gantt_all_task_row.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\item_course.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_course.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_search_tasks.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_search_tasks.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\activity_splash.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\activity_splash.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_module_template.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_module_template.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_add_class.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_add_class.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_syllabus_review.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_syllabus_review.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_home.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_home.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_task_checkbox_row.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_task_checkbox_row.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_add_task.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_add_task.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_task_detail.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_task_detail.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_class_list.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_class_list.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_home.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_home.xml"
     },
     {
-        "merged": "com.classflow.app-mergeDebugResources-51:/layout/activity_splash.xml",
-        "source": "com.classflow.app-main-54:/layout/activity_splash.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_search_result_simple.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_search_result_simple.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\activity_main.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\activity_main.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_gantt_task_row.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_gantt_task_row.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\item_task.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\item_task.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_timeline_container.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_timeline_container.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_tasks.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_tasks.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_task_home.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_task_home.xml"
     },
     {
-        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-mergeDebugResources-51:\\layout\\fragment_task_detail.xml",
-        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.3.1\\com.classflow.app-main-54:\\layout\\fragment_task_detail.xml"
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\activity_splash.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\activity_splash.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\dialog_edit_task_rule.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\dialog_edit_task_rule.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_tasks.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_tasks.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_syllabus_task_row.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_syllabus_task_row.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_gantt_header.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_gantt_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_gantt_chart.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_gantt_chart.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_class_list.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_class_list.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_task_rule.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_task_rule.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_add_task.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_add_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_dev_tools.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_dev_tools.xml"
+    },
+    {
+        "merged": "com.classflow.app-mergeDebugResources-54:/layout/fragment_add_class.xml",
+        "source": "com.classflow.app-main-57:/layout/fragment_add_class.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_syllabus_review_task.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_syllabus_review_task.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_syllabus_setup.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_syllabus_setup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_add_class.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_add_class.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_course.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_course.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_workload.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_workload.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\fragment_settings.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-mergeDebugResources-54:\\layout\\item_task.xml",
+        "source": "C:\\Users\\Admin\\.gradle\\daemon\\9.4.1\\com.classflow.app-main-57:\\layout\\item_task.xml"
     }
 ]

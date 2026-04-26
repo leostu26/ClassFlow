@@ -6,3 +6,4 @@ com.classflow.app-packageDebugResources-4 D:\Admin\Documents\ClassFlow\app\build
 com.classflow.app-debug-5 D:\Admin\Documents\ClassFlow\app\build\intermediates\merged_res\debug\mergeDebugResources
 com.classflow.app-debug-6 D:\Admin\Documents\ClassFlow\app\src\debug\res
 com.classflow.app-main-7 D:\Admin\Documents\ClassFlow\app\src\main\res
+gradleHome-0 C:\Users\Admin\.gradle

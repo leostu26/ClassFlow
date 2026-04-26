@@ -58,6 +58,7 @@ class WorkloadViewModel(application: Application) : AndroidViewModel(application
             set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
         }.timeInMillis
 
+        // TODO: read weekStartDay from SettingsRepository and use Calendar.SUNDAY or Calendar.MONDAY as the anchor
         fun currentWeekStart(): Long = Calendar.getInstance().apply {
             set(Calendar.HOUR_OF_DAY, 0); set(Calendar.MINUTE, 0)
             set(Calendar.SECOND, 0); set(Calendar.MILLISECOND, 0)
@@ -104,6 +105,8 @@ class WorkloadViewModel(application: Application) : AndroidViewModel(application
             TaskType.QUIZ -> 2
             TaskType.EXAM -> 5
             TaskType.PROJECT -> 5
+            TaskType.DISCUSSION -> 2
+            TaskType.RESPONSES -> 1
             TaskType.OTHER -> 1
         }
         val mult = when (task.priority) {

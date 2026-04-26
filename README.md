@@ -1,16 +1,18 @@
 # ClassFlow
 
-**Version:** 1.1.0-beta
+**Version:** 1.1.0
 
-**ClassFlow** is an Android mobile app that helps students manage classes, assignments, deadlines, timelines, and academic workload in one place.
+**Status:** Live — core class and task management features are complete, advanced planning tools are implemented, and major student workflow features are now active.
+
+**ClassFlow** is an Android mobile app that helps students manage classes, assignments, deadlines, reminders, timelines, backups, and academic workload in one place.
 
 ## Purpose
 
-ClassFlow makes it easier for students to organize coursework and keep track of academic responsibilities throughout the term. Instead of relying on scattered notes, PDFs, class portals, and separate planning tools, users can manage classes, tasks, deadlines, Gantt timelines, and weekly workload summaries from one mobile platform.
+ClassFlow makes it easier for students to organize coursework and track academic responsibilities throughout the term. Instead of relying on scattered notes, PDFs, class portals, and separate planning tools, users can manage classes, tasks, deadlines, reminders, search, backups, Gantt timelines, and weekly workload summaries from one mobile platform.
 
 ## Problem
 
-Students often miss deadlines or lose track of assignments because course information is spread across multiple systems. ClassFlow addresses this by giving users a structured way to manage classes, tasks, deadlines, and academic workload from one mobile app.
+Students often miss deadlines or lose track of assignments because course information is spread across multiple systems. ClassFlow addresses this by giving users a structured way to manage classes, tasks, due dates, workload, notifications, and academic planning from one mobile app.
 
 ## Screenshots
 
@@ -28,6 +30,10 @@ Students often miss deadlines or lose track of assignments because course inform
 |:---------:|:--------------:|:---------------:|
 | <img src="screenshots/add_class.png" width="160"/> | <img src="screenshots/gantt_timeline.png" width="160"/> | <img src="screenshots/weekly_workload.png" width="160"/> |
 
+| Search | Settings | Module Builder |
+|:------:|:--------:|:--------------:|
+| <img src="screenshots/search.png" width="160"/> | <img src="screenshots/settings.png" width="160"/> | <img src="screenshots/module_builder.png" width="160"/> |
+
 </div>
 
 ## Platform and Tools
@@ -38,6 +44,7 @@ Students often miss deadlines or lose track of assignments because course inform
 - **Storage:** Room Database (SQLite)
 - **Architecture:** MVVM (Model-View-ViewModel)
 - **Navigation:** Jetpack Navigation Component
+- **Notifications:** Android notification channels and scheduled reminders
 - **Min SDK:** 24 (Android 7.0)
 - **Target SDK:** 35 (Android 15)
 
@@ -48,36 +55,67 @@ Students often miss deadlines or lose track of assignments because course inform
 - Gradle Kotlin DSL (.kts)
 - Version Catalog (libs.versions.toml)
 
-## Features Implemented (v1.1.0-beta)
+## Features Implemented (v1.1.0)
 
-### Core
+### Core Class Management
 
-- Add, view, and delete classes with course name, code, instructor, schedule, room, and color
+- Add, view, and delete classes
+- Store course name, course code, instructor, schedule, room/location, class mode, meeting link, platform, and course color
+- Class mode support:
+  - In Person
+  - Online
+  - Hybrid
+- Conditional fields for room/location, meeting link, and platform
+- Improved Add Class screen with grouped sections:
+  - Basic Info
+  - Schedule & Location
+  - Course Color
+- Live class preview card while creating a class
+- Smart random class color picker
+- Duplicate and near-duplicate color warning
+- Course color swatches with wrapping layout
+- Cascade delete — deleting a class removes all related tasks
+
+### Core Task Management
+
 - Add, view, edit, and delete tasks per class
-- Set due dates, task type, and priority
+- Set title, description, due date, task type, priority, and completion status
+- Mark tasks as completed with a checkbox
 - Supported task types:
   - Assignment
+  - Discussion
+  - Responses
+  - Homework
+  - Programming Exercise
+  - Lab
   - Quiz
+  - Midterm Quiz
   - Exam
+  - Final Quiz
+  - Final Exam
   - Project
+  - Project Paper
   - Other
 - Supported priorities:
   - Low
   - Medium
   - High
-- Mark tasks as completed with a checkbox
-- Cascade delete — deleting a class removes all its tasks
+- Improved Add Task and Task Detail screens
+- Theme-aware dropdowns and fields in light and dark mode
+- Save/delete actions refresh task lists immediately
 
 ### Home Screen
 
 - Time-of-day greeting
-- Course count and pending task count summary cards
+- Compact course count and pending task count summary cards
+- Search entry point from Home
 - **Due Today** section — tasks due today with date highlighted
 - **Due This Week** section — tasks due in the next 7 days
 - **Future Assignments** section — tasks beyond 7 days
 - Empty-state messages when no tasks are due
-- Tap any task card to open and edit it directly from the home screen
+- Tap any task card to open and edit it directly from Home
 - Course name shown on each task card
+- Improved dark mode contrast and reduced clutter
 
 ### Classes Screen
 
@@ -85,24 +123,88 @@ Students often miss deadlines or lose track of assignments because course inform
 - Add Class button in the top toolbar
 - Tap a class to open its task list
 - Delete a class with the trash icon
+- Class cards support course color indicators
 
 ### Tasks Screen
 
 - Per-class task list with progress bar showing completion percentage
+- Search and filter controls
 - Priority color bar on each task card
 - Overdue dates highlighted
 - Add Task button in the top toolbar
 - Tap a task to open Task Detail for editing
+- Improved task card color behavior in light and dark mode
 
-### Task Detail Screen
+### Search and Filter
 
-- Edit title, description, due date, task type, priority, and completion status
-- Delete task with confirmation
-- Save changes navigates back automatically
+ClassFlow includes a dedicated Search Tasks screen.
+
+Implemented search features:
+
+- Search across all loaded tasks
+- Preloaded task results
+- Live filtering by task title and class name
+- Filter chips for:
+  - Priority
+  - Type
+  - Status
+  - Due date
+- Clear filters action
+- Theme-aware result cards
+- Result counts for loaded and shown tasks
+- Tap search results to open task details
+
+### Syllabus Task Setup
+
+ClassFlow includes a manual bulk-entry workflow for syllabus tasks.
+
+Implemented bulk setup features:
+
+- Add multiple task rows before saving
+- Duplicate row
+- Clear row
+- Copy previous due date
+- Add 1 day / Add 7 days date shortcuts
+- Task title, type, priority, due date, and description fields
+- Submit button placed near class info for visibility
+- Review before saving to Room
+- Validation for blank or incomplete rows
+
+### Module Builder
+
+ClassFlow includes a Module Builder to quickly generate repeated class tasks from common academic patterns.
+
+Implemented Module Builder features:
+
+- Generate repeated module tasks from selected task types
+- Number of modules input
+- Module 1 start date selection
+- Task type checklist with visible rows for common and advanced academic task types
+- Task types ordered by common usage:
+  - Discussion Post
+  - Discussion Responses
+  - Assignment
+  - Midterm Quiz
+  - Quiz
+  - Final Quiz
+  - Homework
+  - Programming Exercise
+  - Lab
+  - Exam
+  - Final Exam
+  - Project
+  - Project Paper
+- Editable rule settings for task type, priority, due day, and schedule behavior
+- Module checkbox selectors for module-specific tasks
+- All Modules and Clear controls for module selection
+- Midterm single-module selection
+- Final quiz/final exam last-module behavior
+- Preview summary before generation
+- Generated rows are sent to Syllabus Task Setup for review before saving
 
 ### Timeline / Gantt Chart View
 
-ClassFlow now includes a mobile-friendly Gantt timeline for academic planning.
+ClassFlow includes a mobile-friendly Gantt timeline for academic planning.
 
 Implemented Gantt features:
 
@@ -132,7 +234,7 @@ When are my tasks happening?
 
 ### Weekly Workload Tracker
 
-ClassFlow now includes a Weekly Workload Tracker inside the Timeline section.
+ClassFlow includes a Weekly Workload Tracker inside the Timeline section.
 
 Implemented workload features:
 
@@ -165,6 +267,60 @@ The Weekly Workload Tracker answers:
 How heavy is my week?
 ```
 
+### Settings
+
+ClassFlow includes a Settings screen for app preferences and maintenance.
+
+Implemented settings features:
+
+- Theme preferences
+- Task default preferences
+- Reminder preferences
+- Backup import/export access
+- About/version section
+- Developer Tools access for test utilities
+
+### Notification Reminders
+
+ClassFlow now supports notification testing and reminder infrastructure.
+
+Implemented notification features:
+
+- Android notification permission support
+- Notification channel setup
+- Immediate test notification
+- 10-second scheduled test notification
+- Developer Tools screen for notification testing
+- Notification icon cleanup
+- Reminder settings foundation
+- Real task reminder scheduling support for incomplete tasks with due dates
+
+### Backup Import / Export
+
+ClassFlow includes local backup and restore support.
+
+Implemented backup features:
+
+- Export ClassFlow data to JSON
+- Import ClassFlow backup JSON
+- Backup schema with app name, backup version, export timestamp, classes, and tasks
+- Class/task relationship preservation
+- Import validation
+- Class ID remapping during import
+- Merge and replace import behavior
+- Backup error handling and import summaries
+
+### Swipe Actions
+
+ClassFlow includes swipe action support for faster task handling.
+
+Implemented swipe behavior:
+
+- Swipe task cards to trigger quick task actions
+- Mark task completion faster from task card workflows
+- Swipe interactions designed for Home and task-related cards
+- Destructive delete actions remain protected
+
 ### Navigation
 
 - Bottom navigation bar:
@@ -176,145 +332,112 @@ How heavy is my week?
   - Workload
 - Back navigation fixed — Home button reliably pops the back stack from any screen
 - Toolbar back arrow on all sub-screens
+- Search, Settings, Developer Tools, Syllabus Task Setup, and Module Builder screens added
 
 ### App Icon and Splash Screen
 
 - Custom ClassFlow icon across all mipmap densities
 - Branded splash screen on launch
+- Fixed double-splash behavior
+- Fixed launcher icon sizing
+- Notification large icon removed to avoid duplicate notification icons
+
+## Current Development Update
+
+ClassFlow has moved from beta into a live v1.1.0 release state.
+
+The app now includes the main student workflow:
+
+- create classes
+- create tasks
+- search and filter tasks
+- generate module-based task sets
+- bulk-create syllabus tasks
+- view planning timelines
+- review weekly workload
+- manage reminders
+- backup and restore data
+- customize class colors and delivery mode
+
+Major work completed today included Add Class polishing, smart random course colors, Online / In Person / Hybrid class support, notification testing cleanup, splash/icon fixes, Module Builder improvements, backup/import polish, and README/status updates.
 
 ## Advanced Features Status
 
 ### Implemented
 
 1. **Gantt Chart View**
-   - Added a mobile-friendly 2-week Gantt timeline.
-   - Added All Tasks and By Class views.
-   - Added task bars aligned to a shared date scale.
-   - Added due-status chips, class color indicators, and workload density badges.
+   - Mobile-friendly 2-week academic timeline
+   - All Tasks and By Class views
+   - Task bars aligned to a shared date scale
+   - Due-status chips, class color indicators, and workload density badges
 
 2. **Weekly Workload Tracker**
-   - Added weekly workload scoring.
-   - Added workload levels: Light, Moderate, Heavy, and Overloaded.
-   - Added weekly navigation.
-   - Added most loaded day, task type breakdown, and daily workload breakdown.
-
-### Deferred to Next Week
+   - Weekly workload scoring
+   - Light, Moderate, Heavy, and Overloaded levels
+   - Weekly navigation
+   - Most loaded day, task type breakdown, and daily workload summary
 
 3. **Syllabus Task Setup**
-   - Manual bulk-entry syllabus setup was planned but not implemented this week.
-   - This feature will allow users to add multiple syllabus tasks at once.
-   - PDF parsing, OCR, and AI syllabus extraction are not part of the first version.
+   - Manual bulk-entry task setup
+   - Review-before-save workflow
+   - Duplicate/clear/copy/date shortcut controls
 
-### Removed from Plan
-
-4. **Simplified RACI Matrix**
-   - Removed from the planned feature list.
-   - ClassFlow is focused on individual student planning, not group-project role management.
-
-### Added to Future Features
+4. **Module Builder**
+   - Repeated module task generation
+   - Module checkbox selection
+   - Editable rules
+   - Review generated rows before saving
 
 5. **Settings Screen**
-   - Planned for a future update.
-   - This screen may include theme options, notification preferences, default task priority, default task type, week-start preference, and app information.
+   - App preferences
+   - Reminder settings
+   - Backup/import access
+   - About/version section
+   - Developer Tools
 
-6. **Swipe Actions for Task Cards**
-   - Planned for a future update.
-   - This feature will make task cards faster to use on mobile by supporting swipe gestures on Home and Timeline cards.
+6. **Search and Filter**
+   - Dedicated search screen
+   - Preloaded task results
+   - Priority/type/status/due filters
 
-## Planned / Future Features
+7. **Swipe Actions for Task Cards**
+   - Faster task workflows from cards
 
-### 1. Syllabus Task Setup
+8. **Notification Reminders**
+   - Notification channel and permission support
+   - Test notification tools
+   - Reminder scheduling foundation
 
-Manual bulk-entry feature for adding multiple syllabus tasks at once.
+9. **Export Backup / Import Backup**
+   - JSON export/import support
+   - Validation and restore workflow
 
-Planned first version:
+10. **Class Mode and Smart Class Colors**
+   - In Person / Online / Hybrid support
+   - Meeting link and platform fields
+   - Smart random distinct color generation
+   - Duplicate/similar color warning
 
-- Select a class
-- Add multiple task rows
-- Enter task title, type, priority, due date, and optional description
-- Review tasks before saving
-- Create all tasks in one action
-- Add validation for blank titles, missing dates, and possible duplicates
+### Deferred / Future Improvements
 
-Future versions may include:
-
-- Paste syllabus text and convert lines into task rows
+- Calendar View
+- Task Notes / Attachments
+- Task-specific notification deep links
+- More advanced reminder options
+- Cloud sync
+- Syllabus text parsing
 - Syllabus PDF import
 - OCR support
 - AI-assisted syllabus parsing
 
-### 2. Settings Screen
+### Removed from Plan
 
-Planned settings options:
+- Simplified RACI Matrix
+  - Removed because ClassFlow is focused on individual student planning, not group-project role management.
 
-- Theme:
-  - System
-  - Light
-  - Dark
-- Default task priority:
-  - Low
-  - Medium
-  - High
-- Default task type:
-  - Assignment
-  - Quiz
-  - Exam
-  - Project
-  - Other
-- Week starts on:
-  - Sunday
-  - Monday
-- Show completed tasks:
-  - On
-  - Off
-- Notification reminders:
-  - On
-  - Off
-- Reminder timing:
-  - Same day
-  - 1 day before
-  - 3 days before
-- About ClassFlow:
-  - Version
-  - Project description
-  - GitHub repository link
+## Planned / Future Features
 
-### 3. Swipe Actions for Task Cards
-
-Planned swipe actions for faster mobile task handling.
-
-Planned behavior:
-
-- Swipe left on a task card to mark the task as completed
-- Swipe right on a task card to open the Task Detail screen
-- Show a snackbar with an Undo option after marking a task complete
-- Apply swipe actions to:
-  - Home screen task cards
-  - Timeline / Gantt task cards
-- Do not use swipe gestures for delete actions
-
-Example:
-
-| Swipe Direction | Action |
-|---|---|
-| Left | Mark task completed |
-| Right | Open task details |
-
-This feature will make task management faster while keeping destructive actions protected.
-
-### 4. Notification Reminders
-
-Planned reminder feature for upcoming and overdue tasks.
-
-Possible options:
-
-- Due today reminders
-- 1-day-before reminders
-- 3-day-before reminders
-- High-priority task reminders
-- Overdue task reminders
-
-### 5. Calendar View
+### 1. Calendar View
 
 Possible future calendar-based task view.
 
@@ -325,21 +448,7 @@ Planned concept:
 - Tap a day to view tasks due that day
 - Completed and overdue visual states
 
-### 6. Search and Filter
-
-Planned search and filtering feature for finding tasks quickly as the app grows.
-
-Possible filters:
-
-- Class
-- Priority
-- Task type
-- Completed / incomplete
-- Overdue
-- Due this week
-- Due date range
-
-### 7. Task Notes / Attachments
+### 2. Task Notes / Attachments
 
 Possible future feature for adding more assignment details.
 
@@ -350,44 +459,58 @@ Planned concept:
 - Add file references
 - Store syllabus notes or professor instructions
 
-### 8. Export Backup / Import Backup
+### 3. Advanced Reminder Improvements
 
-Possible future backup feature.
+Future reminder improvements may include:
 
-Planned concept:
+- Task-specific notification deep links
+- Due today summary reminders
+- Overdue reminders
+- High-priority reminders
+- Custom reminder times per task
 
-- Export classes and tasks to CSV
-- Import tasks from CSV
-- Backup local database
-- Restore from backup
+### 4. Advanced Backup / Sync
+
+Possible future backup improvements:
+
+- CSV export
+- CSV import
+- Cloud backup
+- Cross-device sync
+
+### 5. Syllabus Import Enhancements
+
+Future versions may include:
+
+- Paste syllabus text and convert lines into task rows
+- Syllabus PDF import
+- OCR support
+- AI-assisted syllabus parsing
 
 ## Screen Plan
 
 | Screen | Description |
 |---|---|
 | Splash | Branded loading screen |
-| Home | Greeting, stats, tasks due today / this week / future |
+| Home | Greeting, stats, search, tasks due today / this week / future |
 | Class List | All courses with color, code, instructor info |
-| Add Class | Form with name, code, instructor, schedule, room, color picker |
-| Tasks | Per-class task list with progress bar |
-| Add Task | Form with title, description, date picker, type, priority |
+| Add Class | Form with class mode, meeting info, smart color picker, and preview |
+| Tasks | Per-class task list with progress bar, search, filters, and task cards |
+| Add Task | Form with title, description, date picker, type, and priority |
 | Task Detail | View and edit an existing task |
+| Search Tasks | Search and filter tasks across all classes |
+| Syllabus Task Setup | Manual bulk-entry task review and submission |
+| Module Builder | Generate repeated module tasks for a class |
 | Timeline / Gantt | 2-week Gantt chart with All Tasks and By Class views |
 | Weekly Workload | Weekly workload score, task breakdown, and daily workload summary |
-| Syllabus Task Setup | Future manual bulk-entry screen for syllabus tasks |
-| Settings | Future app settings and preferences screen |
-
-## Current Development Update
-
-This week, ClassFlow was expanded beyond the core class and task management features. The Gantt Chart View and Weekly Workload Tracker were added as advanced planning tools.
-
-The Gantt Chart View provides a 2-week visual timeline with both All Tasks and By Class views. The Weekly Workload Tracker summarizes task load by week using task type, priority, due dates, and completion status.
-
-The Manual Bulk Syllabus Task Setup feature was planned but not completed this week. It has been deferred to next week. A future Settings screen and Swipe Actions for Task Cards were also added to the project plan.
+| Settings | App settings and preferences |
+| Developer Tools | Test utilities for notifications and debugging |
 
 ## Project Status
 
-**Status:** Beta — Core features complete, Gantt Chart View implemented, Weekly Workload Tracker implemented, Syllabus Task Setup deferred.
+**Status:** Live — v1.1.0 release state.
+
+ClassFlow is no longer labeled as beta in the README. The app now contains a complete core academic planning workflow plus several advanced features.
 
 ## GitHub
 
